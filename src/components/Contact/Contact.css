@@ -1,0 +1,227 @@
+/* Luxury Contact Section */
+.lux-contact {
+  position: relative;
+}
+
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 52px;
+}
+
+/* Left Channels Card */
+.contact-channels-card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(24px);
+  position: relative;
+  overflow: hidden;
+}
+
+.channels-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.channels-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.channels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.channel-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(10, 19, 41, 0.6);
+  border: 1px solid rgba(45, 212, 191, 0.15);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.channel-item:hover:not(.static-item) {
+  border-color: var(--teal-bright);
+  background: rgba(15, 28, 61, 0.9);
+  transform: translateX(4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(45, 212, 191, 0.15);
+}
+
+.channel-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(45, 212, 191, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.channel-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-label {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.channel-val {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-white);
+  margin-top: 2px;
+}
+
+.channel-arrow {
+  font-size: 1.1rem;
+  color: var(--teal-bright);
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.channel-item:hover .channel-arrow {
+  transform: translate(3px, -3px);
+}
+
+.channel-item.static-item {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Right Form Card */
+.contact-form-card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(24px);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.form-subheading {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.lux-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-input-group label {
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.form-input-group input,
+.form-input-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(3, 7, 18, 0.85);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  border-radius: 10px;
+  color: var(--text-white);
+  font-family: var(--font-main);
+  font-size: 0.94rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input-group input:focus,
+.form-input-group textarea:focus {
+  border-color: var(--teal-bright);
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.25);
+  background: rgba(7, 13, 30, 0.95);
+}
+
+.form-submit-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Form Success Box */
+.form-success-box {
+  padding: 32px;
+  text-align: center;
+  background: rgba(10, 19, 41, 0.8);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 16px;
+}
+
+.success-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--teal-bright);
+  color: var(--canvas-950);
+  font-size: 1.4rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 25px var(--teal-bright);
+}
+
+.form-success-box h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.form-success-box p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .contact-main-grid {
+    grid-template-columns: 1fr;
+  }
+}

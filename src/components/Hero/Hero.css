@@ -1,0 +1,381 @@
+/* Executive Cinematic Hero Section */
+.lux-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 130px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Status Badge */
+.hero-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  background: rgba(10, 19, 41, 0.7);
+  border: 1px solid rgba(45, 212, 191, 0.25);
+  border-radius: 100px;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: var(--teal-bright);
+  margin-bottom: 24px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.live-radar {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-core {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal-bright);
+}
+
+.radar-ring {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--teal-bright);
+  animation: radarPing 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes radarPing {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Typography */
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6.5vw, 5.2rem);
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 14px;
+}
+
+.highlight-glimmer {
+  background: linear-gradient(135deg, var(--teal-bright) 20%, var(--cyan-bright) 60%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 0 25px rgba(45, 212, 191, 0.35));
+}
+
+.hero-role-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.role-prefix {
+  font-family: var(--font-code);
+  color: var(--teal-glow);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.hero-role-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+.hero-description {
+  font-size: 1.12rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 580px;
+  margin-bottom: 38px;
+}
+
+.hero-description strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* Metrics Bar */
+.hero-metrics-bar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 52px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-number {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1.1;
+}
+
+.metric-number span {
+  color: var(--teal-bright);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.metric-divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Right Hologram Visual Container */
+.hero-hologram {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 520px;
+}
+
+.hologram-stage {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gyroscopic Reactor Rings */
+.reactor-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ring-outer {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed rgba(45, 212, 191, 0.25);
+  animation: gyroSpin1 35s linear infinite;
+  box-shadow: 0 0 40px rgba(20, 184, 166, 0.06);
+}
+
+.ring-mid {
+  width: 76%;
+  height: 76%;
+  border: 1.5px solid rgba(6, 182, 212, 0.2);
+  border-left-color: var(--teal-bright);
+  border-right-color: var(--cyan-bright);
+  animation: gyroSpin2 22s linear infinite reverse;
+}
+
+.ring-inner {
+  width: 52%;
+  height: 52%;
+  border: 1px dashed rgba(45, 212, 191, 0.35);
+  animation: gyroSpin1 15s linear infinite;
+}
+
+@keyframes gyroSpin1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gyroSpin2 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Center Core Orb */
+.reactor-core-orb {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2dd4bf 0%, #0d9488 45%, #030712 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 50px rgba(45, 212, 191, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.6);
+}
+
+.orb-code-stream {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #030712;
+  letter-spacing: 0.05em;
+}
+
+/* Floating Telemetry HUD Chips */
+.telemetry-chip {
+  position: absolute;
+  padding: 14px 18px;
+  background: rgba(7, 13, 30, 0.85);
+  border: 1px solid rgba(45, 212, 191, 0.25);
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.15);
+  min-width: 210px;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.telemetry-chip:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--teal-bright);
+}
+
+.chip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.chip-led {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal-bright);
+  box-shadow: 0 0 8px var(--teal-bright);
+}
+
+.chip-led.led-cyan {
+  background: var(--cyan-bright);
+  box-shadow: 0 0 8px var(--cyan-bright);
+}
+
+.chip-led.led-purple {
+  background: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+}
+
+.chip-metric {
+  font-family: var(--font-main);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 4px;
+}
+
+.chip-tag {
+  font-size: 0.72rem;
+  color: var(--teal-bright);
+  font-family: var(--font-code);
+}
+
+.chip-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal-bright), var(--cyan-bright));
+  border-radius: 4px;
+}
+
+/* Chip Placements */
+.chip-top {
+  top: -15px;
+  right: 15px;
+  animation: floatHud1 6s ease-in-out infinite alternate;
+}
+
+.chip-bottom {
+  bottom: 0px;
+  right: -25px;
+  animation: floatHud2 7s ease-in-out infinite alternate;
+}
+
+.chip-left {
+  top: 50%;
+  left: -45px;
+  transform: translateY(-50%);
+  animation: floatHud1 8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatHud1 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12px); }
+}
+
+@keyframes floatHud2 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(10px); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .hero-hologram {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-metrics-bar {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .metric-divider {
+    display: none;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-magnetic {
+    width: 100%;
+  }
+}

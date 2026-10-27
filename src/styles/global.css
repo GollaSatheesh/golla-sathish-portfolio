@@ -1,0 +1,449 @@
+/* ==========================================================================
+   ULTRA-LUXURY ARCHITECTURAL DESIGN SYSTEM — Golla Sathish Portfolio
+   OPTION 1: MONOCHROMATIC DEEP SAPPHIRE & ELECTRIC CYAN
+   APPLE-TIER VISIONOS GLASSMORPHISM ENGINE + 3D TILT & LASER TRACING BEAMS
+   ========================================================================== */
+
+/* ===== Reset & Box Sizing ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Custom Properties ===== */
+:root {
+  /* 1. Deep Background Shade (Dark Obsidian-Navy) */
+  --canvas-950: #030712;
+  --canvas-900: #070e1e;
+  --canvas-850: #0b1528;
+  --canvas-800: #0f1e38;
+  --canvas-700: #14284b;
+
+  /* 2. Apple VisionOS Liquid Glass Tint & Multi-Layer Specular */
+  --surface-card: rgba(11, 21, 40, 0.65);
+  --surface-card-hover: rgba(15, 30, 56, 0.85);
+  --glass-specular-top: rgba(255, 255, 255, 0.22);
+  --glass-specular-bottom: rgba(0, 210, 238, 0.08);
+  --surface-pill: rgba(0, 210, 238, 0.08);
+  --surface-pill-hover: rgba(0, 210, 238, 0.18);
+
+  /* 3. Dominant Accent Tone (Electric Cyan) */
+  --teal-glow: #0891b2;
+  --teal-bright: #00d2ee;
+  --teal-light: #67e8f9;
+  --teal-ultralight: #cffafe;
+  --cyan-accent: #00d2ee;
+  --cyan-bright: #38bdf8;
+  --emerald-accent: #00d2ee;
+
+  /* 4. High-Contrast Text Shade (Crisp Ice White & Metallic Highlights) */
+  --text-white: #ffffff;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  /* 5. Subtle Border Tint (Azure Slate) */
+  --surface-border: rgba(30, 58, 95, 0.38);
+  --surface-border-strong: rgba(0, 210, 238, 0.5);
+
+  /* Radiant Glow Shadows */
+  --glow-subtle: 0 0 20px rgba(0, 210, 238, 0.15);
+  --glow-medium: 0 0 35px rgba(0, 210, 238, 0.28);
+  --glow-intense: 0 0 60px rgba(0, 210, 238, 0.5);
+  --glow-cyan: 0 0 40px rgba(0, 210, 238, 0.35);
+
+  /* Fonts */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--canvas-950);
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--canvas-950);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas-950);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--teal-bright), #0284c7);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--teal-light);
+}
+
+/* Text Selection */
+::selection {
+  background: rgba(0, 210, 238, 0.35);
+  color: var(--text-white);
+}
+
+/* Global Container */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Section Standards with Subtle Glowing Section Dividers */
+section {
+  padding: 120px 0;
+  position: relative;
+  z-index: 2;
+}
+
+section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 238, 0.22), transparent);
+  pointer-events: none;
+}
+
+/* Section Header Typography — Metallic Gradient */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal-bright);
+  background: rgba(0, 210, 238, 0.08);
+  border: 1px solid rgba(0, 210, 238, 0.25);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 20px rgba(0, 210, 238, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.section-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal-bright);
+  box-shadow: 0 0 8px var(--teal-bright);
+  animation: pulseLight 2s infinite ease-in-out;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title .gradient-text {
+  background: linear-gradient(135deg, #ffffff 15%, var(--teal-bright) 75%, #a5f3fc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+  filter: drop-shadow(0 0 25px rgba(0, 210, 238, 0.3));
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 640px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   CINEMATIC FILM GRAIN NOISE OVERLAY
+   ========================================================================== */
+.film-grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   APPLE VISIONOS GLASSMORPHISM ORB & CAUSTIC LIGHT ENGINE
+   ========================================================================== */
+.ambient-scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.ambient-grid {
+  position: absolute;
+  inset: -100px;
+  background-image: 
+    linear-gradient(rgba(0, 210, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 210, 238, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  opacity: 0.75;
+}
+
+/* Apple-style floating fluid glass orbs */
+.glass-ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(80px);
+  opacity: 0.32;
+  will-change: transform;
+}
+
+.orb-primary {
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle at 35% 35%, #00d2ee 0%, #0284c7 50%, rgba(3, 7, 18, 0) 75%);
+  top: -100px;
+  left: 15%;
+  animation: appleFluidMotion1 24s var(--ease-apple) infinite alternate;
+}
+
+.orb-secondary {
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle at 40% 40%, #0ea5e9 0%, #0369a1 45%, rgba(3, 7, 18, 0) 75%);
+  top: 40%;
+  right: -150px;
+  animation: appleFluidMotion2 28s var(--ease-apple) infinite alternate;
+}
+
+.orb-tertiary {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at 45% 45%, #38bdf8 0%, #0c4a6e 55%, rgba(3, 7, 18, 0) 75%);
+  bottom: -100px;
+  left: 20%;
+  animation: appleFluidMotion1 26s var(--ease-apple) infinite alternate-reverse;
+}
+
+@keyframes appleFluidMotion1 {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(80px, 60px, 0) scale(1.12) rotate(12deg); }
+  100% { transform: translate3d(-50px, 110px, 0) scale(0.92) rotate(-8deg); }
+}
+
+@keyframes appleFluidMotion2 {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(-90px, -70px, 0) scale(1.15) rotate(-14deg); }
+  100% { transform: translate3d(60px, -100px, 0) scale(0.9) rotate(10deg); }
+}
+
+@keyframes pulseLight {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.7); opacity: 0.4; }
+}
+
+/* ==========================================================================
+   3D GYROSCOPIC TILT CARDS + TRACING LASER BEAM ENGINE
+   ========================================================================== */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Laser Tracing Continuous Border on Flagship Project */
+.laser-border-box {
+  position: relative;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 58, 95, 0.4),
+    var(--teal-bright),
+    #38bdf8,
+    rgba(30, 58, 95, 0.4)
+  );
+  background-size: 300% 300%;
+  animation: laserTrace 6s linear infinite;
+  box-shadow: 0 0 25px rgba(0, 210, 238, 0.2);
+}
+
+@keyframes laserTrace {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Universal 3D Apple Glass Card Styles */
+.about-glass-card,
+.skill-domain-card,
+.project-flagship-card,
+.project-compact-card,
+.edu-card,
+.workflow-matrix-card,
+.resume-billboard-card,
+.contact-channels-card,
+.contact-form-card {
+  position: relative;
+  background: rgba(11, 21, 40, 0.65) !important;
+  backdrop-filter: blur(28px) saturate(190%) contrast(105%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(105%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-top-color: rgba(255, 255, 255, 0.28) !important;
+  border-left-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 210, 238, 0.1) !important;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.about-glass-card:hover,
+.skill-domain-card:hover,
+.project-flagship-card:hover,
+.project-compact-card:hover,
+.edu-card:hover,
+.workflow-matrix-card:hover,
+.resume-billboard-card:hover,
+.contact-channels-card:hover,
+.contact-form-card:hover {
+  border-color: rgba(0, 210, 238, 0.5) !important;
+  border-top-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 
+    0 35px 70px rgba(0, 0, 0, 0.6),
+    0 0 35px rgba(0, 210, 238, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Apple Interactive Follower */
+.cursor-follower {
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 210, 238, 0.08) 0%, rgba(2, 132, 199, 0.03) 40%, transparent 68%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: opacity 0.5s ease;
+  mix-blend-mode: screen;
+}
+
+/* ===== Magnetic Buttons ===== */
+.btn-magnetic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 34px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease;
+  letter-spacing: -0.01em;
+  will-change: transform;
+}
+
+.btn-luxury-primary {
+  background: linear-gradient(135deg, var(--teal-bright) 0%, #06b6d4 50%, #0284c7 100%);
+  color: #030712;
+  box-shadow: 0 4px 20px rgba(0, 210, 238, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-luxury-primary:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 40px rgba(0, 210, 238, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
+.btn-luxury-secondary {
+  background: rgba(11, 21, 40, 0.7);
+  color: var(--text-white);
+  border: 1px solid rgba(0, 210, 238, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.btn-luxury-secondary:hover {
+  transform: scale(1.04);
+  border-color: var(--teal-bright);
+  background: rgba(15, 30, 56, 0.95);
+  color: var(--teal-bright);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 238, 0.25);
+}
+
+/* ===== Global Reveal Animations ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.8s var(--ease-apple), transform 0.8s var(--ease-apple);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger reveals */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  section {
+    padding: 80px 0;
+  }
+  .container {
+    padding: 0 20px;
+  }
+  .cursor-follower,
+  .film-grain-overlay {
+    display: none;
+  }
+}
