@@ -223,5 +223,30 @@
 @media (max-width: 1024px) {
   .contact-main-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-channels-card,
+  .contact-form-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .channel-item {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .channel-icon-box {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+  .channel-val {
+    font-size: 0.85rem;
+    word-break: break-all;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }

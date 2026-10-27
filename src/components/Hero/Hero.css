@@ -354,9 +354,15 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .lux-hero {
+    min-height: auto;
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: left;
+    gap: 40px;
   }
   .hero-hologram {
     display: none;
@@ -364,9 +370,46 @@
 }
 
 @media (max-width: 640px) {
+  .lux-hero {
+    padding-top: 90px;
+    padding-bottom: 50px;
+  }
+  .hero-status-badge {
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    white-space: normal;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+  .hero-name {
+    font-size: clamp(2.4rem, 8.5vw, 3.6rem);
+  }
+  .hero-role-title {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+  .hero-description {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
   .hero-metrics-bar {
-    gap: 18px;
+    gap: 14px;
     flex-wrap: wrap;
+    padding: 16px;
+    background: rgba(11, 21, 40, 0.5);
+    border: 1px solid rgba(0, 210, 238, 0.15);
+    border-radius: 16px;
+  }
+  .metric-cell {
+    flex: 1 1 30%;
+    text-align: center;
+  }
+  .metric-number {
+    font-size: 1.6rem;
+  }
+  .metric-label {
+    font-size: 0.68rem;
   }
   .metric-divider {
     display: none;
@@ -374,8 +417,11 @@
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    gap: 12px;
   }
   .btn-magnetic {
     width: 100%;
+    padding: 14px 20px;
+    justify-content: center;
   }
 }

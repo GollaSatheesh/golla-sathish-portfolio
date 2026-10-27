@@ -397,3 +397,50 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .flagship-glass-inner {
+    padding: 22px 18px;
+    gap: 24px;
+  }
+  .project-flagship-card {
+    border-radius: 18px;
+  }
+  .flagship-title {
+    font-size: 1.5rem;
+  }
+  .flagship-summary {
+    font-size: 0.92rem;
+  }
+  .pipeline-stages-stack {
+    padding: 14px;
+  }
+  .stage-row {
+    padding: 10px;
+  }
+  .stage-title {
+    font-size: 0.82rem;
+  }
+  .stage-meta {
+    font-size: 0.72rem;
+  }
+  .flagship-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .compact-project-card {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+  .compact-metrics-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 10px 6px;
+  }
+  .cm-val {
+    font-size: 0.75rem;
+  }
+  .cm-label {
+    font-size: 0.58rem;
+  }
+}

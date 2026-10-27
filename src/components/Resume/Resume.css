@@ -100,6 +100,7 @@
     flex-direction: column;
     text-align: left;
     align-items: flex-start;
+    gap: 28px;
   }
   .billboard-actions {
     width: 100%;
@@ -107,5 +108,20 @@
   }
   .billboard-actions .btn-magnetic {
     width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .resume-billboard-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .billboard-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .candidate-name {
+    font-size: 1.25rem;
   }
 }

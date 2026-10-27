@@ -76,7 +76,7 @@ export default function Navbar() {
 
   return (
     <div className={`lux-navbar-wrapper ${scrolled ? 'is-scrolled' : ''}`}>
-      <header className="lux-floating-island">
+      <header className={`lux-floating-island ${mobileMenuOpen ? 'menu-open' : ''}`}>
         
         {/* Laser Scroll Progress Bar at the top rim */}
         <div className="navbar-scroll-track" aria-hidden="true">
