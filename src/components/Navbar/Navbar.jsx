@@ -95,7 +95,7 @@ export default function Navbar() {
               <div className="symbol-glow"></div>
             </div>
             <span className="brand-text">
-              Golla<span className="brand-accent">.Sathish</span>
+              Golla<span className="brand-accent"> Sathish</span>
             </span>
             <span className="brand-spec">DS / ML</span>
           </a>
