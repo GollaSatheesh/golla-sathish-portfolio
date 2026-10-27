@@ -26,12 +26,12 @@ export default function About() {
           {/* Left Narrative */}
           <div className="about-narrative reveal stagger-1">
             <p className="narrative-lead">
-              I am an <strong>Aspiring Data Scientist</strong> with hands-on experience in 
+              I am an <strong> Data Scientist</strong> with hands-on experience in 
               <strong> Python, SQL, machine learning, deep learning</strong>, and <strong>NLP</strong> developed 
               through academic rigor and self-driven engineering projects.
             </p>
             <p>
-              Currently pursuing my <strong>B.Tech in Computer Science and Engineering</strong> at 
+              I have completed my <strong>B.Tech in Artificial Intelligence</strong> at 
               <em> Sri Venkatesa Perumal College of Engineering and Technology</em> (2022 – 2026, CGPA: 7.0/10.0), 
               I specialize in taking messy datasets through rigorous <strong>data cleaning, EDA, feature engineering</strong>, 
               and training optimized classification and regression architectures.
