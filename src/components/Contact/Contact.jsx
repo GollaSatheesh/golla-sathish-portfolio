@@ -10,7 +10,8 @@ export default function Contact() {
     setFormStatus('sending');
 
     try {
-      const response = await fetch('http://localhost:5000/api/send-email', {
+      // 1. Try relative cloud endpoint first (works automatically on Vercel 24/7)
+      let response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,6 +22,21 @@ export default function Contact() {
           message: formData.message,
         }),
       });
+
+      // 2. If running locally without Vercel, try local backend
+      if (!response.ok && window.location.hostname === 'localhost') {
+        response = await fetch('http://localhost:5000/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        });
+      }
 
       const data = await response.json();
 
