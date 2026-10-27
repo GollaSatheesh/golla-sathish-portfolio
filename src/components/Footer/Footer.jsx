@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="footer-top-row">
           <div className="footer-brand-block">
             <span className="f-brand-logo">
-              <span className="f-brand-symbol">GS</span> Golla<span className="f-brand-accent">.Sathish</span>
+              <span className="f-brand-symbol">GS</span> Golla<span className="f-brand-accent"> Sathish</span>
             </span>
             <p className="f-brand-tagline">
               Data Scientist & Machine Learning Engineer based in Bangalore, Karnataka.
