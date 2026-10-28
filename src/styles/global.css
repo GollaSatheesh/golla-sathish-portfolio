@@ -38,10 +38,10 @@
   --text-muted: #64748B;
   --text-dim: #475569;
 
-  /* 5. Typography Stacks */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Inter', 'Space Grotesk', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* 5. Typography Stacks (High-End Silicon Valley Geometric Sans) */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* 6. Motion Standards (Linear Spring) */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,11 +63,18 @@ body {
   background-color: var(--canvas-bg);
   color: var(--text-primary);
   line-height: 1.6;
+  letter-spacing: -0.012em;
   overflow-x: hidden;
   max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
 }
 
 /* Custom Minimalist Scrollbar */
