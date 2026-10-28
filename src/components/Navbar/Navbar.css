@@ -25,14 +25,14 @@
   pointer-events: auto;
   position: relative;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1180px;
   background: rgba(13, 17, 23, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 9999px;
   border: 1px solid var(--hairline-border);
   box-shadow: var(--shadow-dock);
-  padding: 6px 14px 6px 12px;
+  padding: 6px 18px 6px 14px;
   transition: all 0.3s var(--ease-spring);
 }
 
