@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ModelPlayground from './ModelPlayground';
+import MovingCards from '../MovingCards/MovingCards';
 import './Projects.css';
 
 const VERIFIED_PROJECTS = [
@@ -375,6 +376,11 @@ export default function Projects() {
             </div>
           </div>
 
+        </div>
+
+        {/* Continuous Moving Showcase Cards Ribbon (TAP Academy Style) */}
+        <div className="reveal stagger-2">
+          <MovingCards />
         </div>
 
         {/* Live Interactive Model Inference Playground */}
