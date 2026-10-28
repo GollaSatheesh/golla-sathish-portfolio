@@ -4,6 +4,7 @@ import './Navbar.css';
 const NAV_LINKS = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
+  { name: 'Visualizer', href: '#visualizer' },
   { name: 'Projects', href: '#projects' },
   { name: 'Workflow', href: '#workflow' },
   { name: 'Education', href: '#education' },
@@ -31,7 +32,7 @@ export default function Navbar() {
       setScrolled(winScroll > 25);
 
       // Section tracker
-      const sections = ['about', 'skills', 'projects', 'workflow', 'education', 'resume', 'contact'];
+      const sections = ['about', 'skills', 'visualizer', 'projects', 'workflow', 'education', 'resume', 'contact'];
       const scrollPos = winScroll + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {

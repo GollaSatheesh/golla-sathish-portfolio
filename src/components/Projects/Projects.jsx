@@ -91,6 +91,13 @@ const VERIFIED_PROJECTS = [
 ];
 
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const matchesFilter = (category) => {
+    if (activeFilter === 'all') return true;
+    return activeFilter === category;
+  };
+
   return (
     <section id="projects" className="lux-projects">
       <div className="container">
@@ -109,11 +116,30 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Interactive Domain Filter Tabs (TAP Academy style) */}
+        <div className="projects-filter-bar reveal stagger-1">
+          {[
+            { id: 'all', label: 'All Architectures', count: 4 },
+            { id: 'capstone', label: 'Institutional Capstone', count: 1 },
+            { id: 'nlp', label: 'NLP & Text Classification', count: 2 },
+            { id: 'deep-learning', label: 'Deep Learning & RNN', count: 1 },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              className={`project-filter-btn ${activeFilter === tab.id ? 'active' : ''}`}
+              onClick={() => setActiveFilter(tab.id)}
+            >
+              <span>{tab.label}</span>
+              <span className="filter-count">{tab.count}</span>
+            </button>
+          ))}
+        </div>
+
         {/* Silicon Valley 12-Column Asymmetrical Bento Grid */}
         <div className="bento-grid-container">
           
           {/* Bento Cell 1: Flagship Capstone (8 Columns) */}
-          <div className="bento-cell bento-span-8 spotlight-card reveal stagger-1">
+          <div className={`bento-cell bento-span-8 spotlight-card reveal stagger-1 ${matchesFilter('capstone') ? 'filter-active' : 'filter-dimmed'}`}>
             <div className="bento-cell-inner">
               
               <div className="bento-badge-row">
@@ -192,7 +218,7 @@ export default function Projects() {
           </div>
 
           {/* Bento Cell 2: Secondary Highlight Sentiment Analysis (4 Columns) */}
-          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-2">
+          <div className={`bento-cell bento-span-4 spotlight-card reveal stagger-2 ${matchesFilter('nlp') ? 'filter-active' : 'filter-dimmed'}`}>
             <div className="bento-cell-inner">
               <div className="bento-badge-row">
                 <span className="bento-pill-badge badge-cyan">
@@ -231,7 +257,7 @@ export default function Projects() {
           </div>
 
           {/* Bento Cell 3: Next Word Prediction RNN (4 Columns) */}
-          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-3">
+          <div className={`bento-cell bento-span-4 spotlight-card reveal stagger-3 ${matchesFilter('deep-learning') ? 'filter-active' : 'filter-dimmed'}`}>
             <div className="bento-cell-inner">
               <div className="bento-badge-row">
                 <span className="bento-pill-badge badge-indigo">
@@ -270,7 +296,7 @@ export default function Projects() {
           </div>
 
           {/* Bento Cell 4: Naive Bayes Classification (4 Columns) */}
-          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-4">
+          <div className={`bento-cell bento-span-4 spotlight-card reveal stagger-4 ${matchesFilter('nlp') ? 'filter-active' : 'filter-dimmed'}`}>
             <div className="bento-cell-inner">
               <div className="bento-badge-row">
                 <span className="bento-pill-badge badge-default">

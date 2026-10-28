@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
+import TechMarquee from './components/TechMarquee/TechMarquee';
 import About from './components/About/About';
 import Skills from './components/Skills/Skills';
+import VisualConcept from './components/VisualConcept/VisualConcept';
 import Projects from './components/Projects/Projects';
 import Workflow from './components/Workflow/Workflow';
 import Education from './components/Education/Education';
@@ -103,8 +105,10 @@ function App() {
       <Navbar />
       <main id="main-content">
         <Hero />
+        <TechMarquee />
         <About />
         <Skills />
+        <VisualConcept />
         <Projects />
         <Workflow />
         <Education />
