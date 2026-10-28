@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { name: 'Workflow', href: '#workflow' },
   { name: 'Education', href: '#education' },
   { name: 'Resume', href: '#resume' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Contact', href: '#contact', special: true },
 ];
 
 export default function Navbar() {
@@ -114,14 +114,21 @@ export default function Navbar() {
               ></div>
 
               {NAV_LINKS.map((link) => (
-                <li key={link.name} className="dock-item">
+                <li key={link.name} className={`dock-item ${link.special ? 'dock-item-special' : ''}`}>
                   <a
                     href={link.href}
                     data-section={link.href.substring(1)}
-                    className={`dock-link ${activeSection === link.href.substring(1) ? 'active' : ''}`}
+                    className={`dock-link ${activeSection === link.href.substring(1) ? 'active' : ''} ${link.special ? 'dock-link-special' : ''}`}
                     onClick={(e) => handleNavClick(e, link.href)}
                   >
-                    {link.name}
+                    {link.special && (
+                      <span className="contact-beacon" aria-hidden="true">
+                        <span className="beacon-core"></span>
+                        <span className="beacon-halo"></span>
+                      </span>
+                    )}
+                    <span>{link.name}</span>
+                    {link.special && <span className="contact-arrow" aria-hidden="true">↗</span>}
                   </a>
                 </li>
               ))}

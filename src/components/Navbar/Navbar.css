@@ -216,6 +216,79 @@
   font-weight: 600;
 }
 
+/* Subtle HR Call-To-Action Highlight (Special Contact Pill) */
+.dock-link-special {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(99, 102, 241, 0.12) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  color: #38bdf8 !important;
+  font-weight: 600 !important;
+  padding: 5px 12px !important;
+  margin-left: 4px;
+  border-radius: 9999px !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.dock-link-special:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(99, 102, 241, 0.24) 100%) !important;
+  border-color: #38bdf8 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.dock-link-special.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.28) 0%, rgba(99, 102, 241, 0.3) 100%) !important;
+  border-color: #38bdf8 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+}
+
+.contact-beacon {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beacon-core {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.beacon-halo {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.7);
+  animation: beacon-ping 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes beacon-ping {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.contact-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+  color: #38bdf8;
+}
+
+.dock-link-special:hover .contact-arrow {
+  transform: translate(2px, -2px);
+  color: #FFFFFF;
+}
+
 /* Sliding Active Pill */
 .dock-sliding-pill {
   position: absolute;
