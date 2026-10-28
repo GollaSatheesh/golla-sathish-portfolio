@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ModelPlayground from './ModelPlayground';
 import './Projects.css';
 
 const VERIFIED_PROJECTS = [
@@ -348,6 +349,11 @@ export default function Projects() {
             </div>
           </div>
 
+        </div>
+
+        {/* Live Interactive Model Inference Playground */}
+        <div className="reveal stagger-2">
+          <ModelPlayground />
         </div>
 
       </div>
