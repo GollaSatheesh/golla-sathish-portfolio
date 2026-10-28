@@ -1,74 +1,57 @@
-/* Luxury Resume Section */
+/* ==========================================================================
+   SILICON VALLEY DEVELOPER RESUME BILLBOARD (Linear / Raycast Standards)
+   Hairline Precision · Clean Monospace Tags · Primary High-Contrast CTA
+   ========================================================================== */
+
 .lux-resume {
   position: relative;
 }
 
 .resume-billboard-card {
   margin-top: 48px;
-  background: var(--surface-card);
-  border: 1px solid var(--surface-border);
-  border-radius: 24px;
-  padding: 44px;
-  backdrop-filter: blur(24px);
+  border-radius: 16px !important;
+  padding: 36px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 36px;
   position: relative;
-  overflow: hidden;
-  transition: all 0.4s var(--ease-spring);
-}
-
-.resume-billboard-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--teal-bright), var(--cyan-bright));
-}
-
-.resume-billboard-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--surface-border-strong);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 40px rgba(45, 212, 191, 0.15);
 }
 
 .billboard-left {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
 }
 
 .doc-icon-badge {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.08));
-  border: 1px solid rgba(239, 68, 68, 0.35);
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-code);
-  font-size: 1rem;
-  font-weight: 800;
-  color: #f87171;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #F87171;
   flex-shrink: 0;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
 }
 
 .candidate-name {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 6px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
 }
 
 .candidate-headline {
-  font-size: 0.94rem;
-  color: var(--text-muted);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
   margin-bottom: 12px;
 }
 
@@ -79,11 +62,11 @@
 }
 
 .spec-tag {
-  font-family: var(--font-code);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--teal-bright);
-  background: rgba(20, 184, 166, 0.08);
-  border: 1px solid rgba(45, 212, 191, 0.2);
+  color: var(--text-secondary);
+  background: var(--surface-pill);
+  border: 1px solid var(--hairline-border);
   padding: 3px 10px;
   border-radius: 6px;
 }
@@ -91,7 +74,7 @@
 .billboard-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-shrink: 0;
 }
 
@@ -100,7 +83,7 @@
     flex-direction: column;
     text-align: left;
     align-items: flex-start;
-    gap: 28px;
+    gap: 24px;
   }
   .billboard-actions {
     width: 100%;
@@ -114,14 +97,13 @@
 @media (max-width: 640px) {
   .resume-billboard-card {
     padding: 24px 18px;
-    border-radius: 18px;
   }
   .billboard-left {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 14px;
   }
   .candidate-name {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 }

@@ -28,11 +28,11 @@ export default function Navbar() {
       const scrolledRatio = height > 0 ? (winScroll / height) * 100 : 0;
       setScrollProgress(scrolledRatio);
 
-      setScrolled(winScroll > 30);
+      setScrolled(winScroll > 25);
 
       // Section tracker
       const sections = ['about', 'skills', 'projects', 'workflow', 'education', 'resume', 'contact'];
-      const scrollPos = winScroll + 220;
+      const scrollPos = winScroll + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -44,19 +44,18 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Update sliding spotlight pill position whenever active section changes
+  // Update sliding pill indicator position
   useEffect(() => {
     if (!navListRef.current) return;
-    const activeLink = navListRef.current.querySelector(`.nav-link[data-section="${activeSection}"]`);
+    const activeLink = navListRef.current.querySelector(`[data-section="${activeSection}"]`);
     if (activeLink) {
+      const navRect = navListRef.current.getBoundingClientRect();
       const linkRect = activeLink.getBoundingClientRect();
-      const listRect = navListRef.current.getBoundingClientRect();
       setSpotlightStyle({
-        left: linkRect.left - listRect.left,
+        left: linkRect.left - navRect.left,
         width: linkRect.width,
         opacity: 1,
       });
@@ -75,38 +74,44 @@ export default function Navbar() {
   };
 
   return (
-    <div className={`lux-navbar-wrapper ${scrolled ? 'is-scrolled' : ''}`}>
-      <header className={`lux-floating-island ${mobileMenuOpen ? 'menu-open' : ''}`}>
+    <div className={`dock-navbar-wrapper ${scrolled ? 'is-scrolled' : ''}`}>
+      <header className={`dock-pill-container ${mobileMenuOpen ? 'menu-open' : ''}`}>
         
-        {/* Laser Scroll Progress Bar at the top rim */}
-        <div className="navbar-scroll-track" aria-hidden="true">
+        {/* Subtle Hairline Scroll Progress Track */}
+        <div className="dock-scroll-track" aria-hidden="true">
           <div
-            className="navbar-scroll-indicator"
+            className="dock-scroll-indicator"
             style={{ width: `${scrollProgress}%` }}
           ></div>
         </div>
 
-        <div className="lux-nav-container">
+        <div className="dock-inner-row">
           
-          {/* Brand Logo */}
-          <a href="#" className="lux-brand" onClick={(e) => handleNavClick(e, '#hero')}>
-            <div className="brand-symbol">
+          {/* Brand Identity */}
+          <a href="#" className="dock-brand" onClick={(e) => handleNavClick(e, '#hero')}>
+            <div className="dock-brand-symbol">
               <span className="symbol-letter">GS</span>
-              <div className="symbol-glow"></div>
             </div>
-            <span className="brand-text">
-              Golla<span className="brand-accent"> Sathish</span>
+            <span className="dock-brand-name">
+              Golla <span className="brand-highlight">Sathish</span>
             </span>
-            <span className="brand-spec">DS / ML</span>
           </a>
 
-          {/* Center Glass Capsule with Sliding Magnetic Active Spotlight */}
-          <nav className="lux-nav-capsule" aria-label="Main Navigation">
-            <ul className="nav-list" ref={navListRef}>
-              
-              {/* Animated Sliding Pill */}
+          {/* Silicon Valley Live Operational Status Pill */}
+          <div className="dock-status-pill" title="Actively interviewing for Data Science and ML roles">
+            <span className="status-dot-pulse">
+              <span className="dot-core"></span>
+              <span className="dot-ripple"></span>
+            </span>
+            <span className="status-text">Operational / Open to Work</span>
+          </div>
+
+          {/* Centered Navigation Capsule */}
+          <nav className="dock-nav-links" aria-label="Main Navigation">
+            <ul className="dock-list" ref={navListRef}>
+              {/* Sliding Active Pill */}
               <div
-                className="sliding-spotlight-pill"
+                className="dock-sliding-pill"
                 style={{
                   transform: `translateX(${spotlightStyle.left}px)`,
                   width: `${spotlightStyle.width}px`,
@@ -116,11 +121,11 @@ export default function Navbar() {
               ></div>
 
               {NAV_LINKS.map((link) => (
-                <li key={link.name} className="nav-item">
+                <li key={link.name} className="dock-item">
                   <a
                     href={link.href}
                     data-section={link.href.substring(1)}
-                    className={`nav-link ${activeSection === link.href.substring(1) ? 'active' : ''}`}
+                    className={`dock-link ${activeSection === link.href.substring(1) ? 'active' : ''}`}
                     onClick={(e) => handleNavClick(e, link.href)}
                   >
                     {link.name}
@@ -130,74 +135,67 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          {/* Right Actions: 1-Click Resume + Let's Connect */}
-          <div className="lux-nav-actions">
-            
-            {/* Quick 1-Click PDF Resume Download Button */}
+          {/* Right Action Hub */}
+          <div className="dock-actions">
             <a
               href="/Golla_Sathish_Resume.pdf"
               download="Golla_Sathish_Resume.pdf"
-              className="quick-cv-btn"
+              className="dock-cv-btn"
               title="Download Golla Sathish's Resume (PDF)"
             >
-              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
               <span>CV</span>
             </a>
 
-            {/* Let's Connect CTA */}
             <a
               href="#contact"
-              className="nav-cta-btn"
+              className="dock-connect-btn"
               onClick={(e) => handleNavClick(e, '#contact')}
             >
-              <span>Let's Connect</span>
-              <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13">
-                <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
-              </svg>
+              <span>Connect</span>
             </a>
 
             {/* Mobile Hamburger Toggle */}
             <button
-              className={`lux-hamburger ${mobileMenuOpen ? 'open' : ''}`}
+              className={`dock-hamburger ${mobileMenuOpen ? 'open' : ''}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle mobile menu"
-              aria-expanded={mobileMenuOpen}
             >
               <span></span>
               <span></span>
               <span></span>
             </button>
-
           </div>
+
         </div>
 
-        {/* Mobile Drawer */}
-        <div className={`lux-mobile-menu ${mobileMenuOpen ? 'visible' : ''}`}>
-          <ul className="mobile-nav-list">
+        {/* Mobile Navigation Drawer */}
+        <div className={`dock-mobile-drawer ${mobileMenuOpen ? 'visible' : ''}`}>
+          <ul className="dock-mobile-list">
             {NAV_LINKS.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="mobile-nav-link"
+                  className="dock-mobile-link"
                   onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.name}
                 </a>
               </li>
             ))}
-            <li className="mobile-action-row">
+            <li className="dock-mobile-actions">
               <a
                 href="/Golla_Sathish_Resume.pdf"
                 download="Golla_Sathish_Resume.pdf"
-                className="mobile-cv-link"
+                className="dock-mobile-cv"
               >
-                📄 Download Resume (PDF)
+                Download Resume (PDF)
               </a>
               <a
                 href="#contact"
-                className="mobile-cta-link"
+                className="dock-mobile-connect"
                 onClick={(e) => handleNavClick(e, '#contact')}
               >
                 Get In Touch

@@ -1,8 +1,12 @@
-/* Luxury Footer */
+/* ==========================================================================
+   SILICON VALLEY DEVELOPER FOOTER (Linear / Vercel Standards)
+   Hairline Precision · Minimalist Typography · Monospace Meta
+   ========================================================================== */
+
 .lux-footer {
-  padding: 80px 0 40px;
-  border-top: 1px solid rgba(45, 212, 191, 0.12);
-  background: rgba(3, 7, 18, 0.95);
+  padding: 60px 0 36px;
+  border-top: 1px solid var(--hairline-border);
+  background: var(--canvas-bg);
   position: relative;
   z-index: 2;
 }
@@ -10,47 +14,46 @@
 .footer-inner {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
 }
 
 .footer-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
 .f-brand-logo {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-white);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFFFF;
   letter-spacing: -0.02em;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 6px;
 }
 
 .f-brand-symbol {
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--teal-bright);
-  padding: 3px 8px;
-  background: rgba(0, 210, 238, 0.12);
-  border: 1px solid rgba(0, 210, 238, 0.35);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--hairline-border);
   border-radius: 6px;
-  letter-spacing: -0.02em;
 }
 
 .f-brand-accent {
-  color: var(--teal-bright);
+  color: var(--text-secondary);
 }
 
 .f-brand-tagline {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   max-width: 360px;
 }
@@ -58,73 +61,74 @@
 .footer-links-cluster {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
 .f-social-link {
-  font-family: var(--font-code);
-  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 8px 16px;
-  background: rgba(10, 19, 41, 0.6);
-  border: 1px solid rgba(45, 212, 191, 0.15);
+  padding: 6px 14px;
+  background: var(--surface-pill);
+  border: 1px solid var(--hairline-border);
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.2s var(--ease-spring);
 }
 
 .f-social-link:hover {
-  color: var(--teal-bright);
-  border-color: var(--teal-bright);
-  background: rgba(20, 184, 166, 0.12);
-  transform: translateY(-2px);
+  color: #FFFFFF;
+  border-color: var(--hairline-border-hover);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
 }
 
 .back-to-top-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(20, 184, 166, 0.1);
-  border: 1px solid rgba(45, 212, 191, 0.25);
-  color: var(--teal-bright);
-  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--surface-pill);
+  border: 1px solid var(--hairline-border);
+  color: var(--text-secondary);
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s var(--ease-spring);
+  transition: all 0.2s var(--ease-spring);
 }
 
 .back-to-top-btn:hover {
-  background: var(--teal-bright);
-  color: var(--canvas-950);
-  box-shadow: 0 0 20px var(--teal-bright);
-  transform: translateY(-4px);
+  background: #FFFFFF;
+  color: #08090A;
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
 }
 
 .footer-bottom-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
 }
 
 .f-copyright {
-  font-size: 0.82rem;
-  color: var(--text-dim);
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 .f-copyright strong {
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .f-meta-pill {
-  font-family: var(--font-code);
-  font-size: 0.72rem;
-  color: var(--teal-bright);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
 }
 
 @media (max-width: 768px) {
@@ -132,11 +136,9 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .footer-links-cluster {
-    flex-wrap: wrap;
-  }
   .footer-bottom-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
 }

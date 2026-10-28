@@ -3,85 +3,84 @@ import './Projects.css';
 
 const VERIFIED_PROJECTS = [
   {
-    id: 'student-performance',
+    id: 'student-performance-prediction',
     title: 'Student Performance Prediction System',
-    type: 'Final-Year B.Tech Capstone',
-    domain: 'Machine Learning / EdTech',
-    badge: '🏆 INSTITUTIONAL CAPSTONE',
+    type: 'Supervised ML / Institutional Capstone',
+    domain: 'Academic Risk Classification',
+    badge: '★ INSTITUTIONAL CAPSTONE',
     featured: true,
     summary:
-      'Engineered an early-warning classification system that proactively flags students requiring academic intervention based on historical exam trajectories and demographic indicators.',
+      'Engineered an early-alert machine learning classification system that analyzes historical exam trajectories and feature dimensions to identify at-risk students for academic counseling.',
     highlights: [
-      'Conducted rigorous exploratory data analysis (EDA), handling missing attributes and encoding multi-categorical factors.',
-      'Extracted and selected high-impact predictive features to maximize recall on underperforming students.',
-      'Trained, benchmarked, and hyperparameter-tuned Random Forest and Gradient Boosting ensemble architectures.',
-      'Team project documented in a comprehensive institutional academic research report.',
+      'Engineered end-to-end data pipelines: outlier filtering, categorical encoding, and feature correlation matrix analysis.',
+      'Trained, benchmarked, and hyperparameter-tuned Random Forest & Gradient Boosting models.',
+      'Documented complete institutional findings in a formal academic engineering thesis.',
     ],
-    tech: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Random Forest', 'Gradient Boosting', 'EDA'],
+    tech: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Random Forest', 'GBDT'],
     metrics: [
-      { label: 'Core Algorithms', value: 'RF + GBDT' },
-      { label: 'Evaluation Target', value: 'At-Risk Recall' },
-      { label: 'Status', value: 'Report Documented' },
+      { label: 'Role', value: 'Lead Engineer' },
+      { label: 'Models', value: 'RF & GBDT' },
+      { label: 'Dataset', value: 'Institutional' },
+      { label: 'Status', value: 'Verified Thesis' },
     ],
   },
   {
-    id: 'sentiment-analysis',
-    title: 'Sentiment Analysis using TF-IDF & Logistic Regression',
+    id: 'sentiment-analysis-tfidf',
+    title: 'Sentiment Analysis with TF-IDF & Logistic Regression',
     type: 'NLP / Supervised Classification',
-    domain: 'Linguistic Computing',
-    badge: '⭐ ~90% BENCHMARK ACCURACY',
+    domain: 'Text Classification',
+    badge: '🚀 ~90% TEST ACCURACY',
     featured: false,
     summary:
-      'Built a high-performance binary NLP classification pipeline to categorize movie reviews into positive or negative sentiments with production serialization.',
+      'Engineered a high-precision binary text classification engine converting unstructured natural language into high-dimensional sparse representations.',
     highlights: [
-      'Executed full text preprocessing: regex cleaning, tokenization, stopword filtering, and stemming.',
-      'Implemented TF-IDF vectorization to convert raw lexical sequences into optimized sparse feature matrices.',
-      'Utilized stratified train-test splits and evaluated with precision, recall, confusion matrices, and F1-score.',
-      'Achieved verified ~90% accuracy; serialized vectorizer and inference model with Joblib.',
+      'Designed text sanitation pipeline: custom regex tokenization, stopword filtering, and n-gram TF-IDF vectorization.',
+      'Achieved verifiable ~90% test accuracy with stratified train-test splits.',
+      'Serialized production pipeline artifacts (.pkl) via Joblib for instant zero-latency inference.',
     ],
-    tech: ['Python', 'Scikit-learn', 'TF-IDF', 'Logistic Regression', 'Joblib', 'NLP Preprocessing'],
+    tech: ['Python', 'Scikit-learn', 'TF-IDF', 'Logistic Regression', 'Joblib'],
     metrics: [
-      { label: 'Accuracy', value: '~90%' },
-      { label: 'Split Method', value: 'Stratified K' },
-      { label: 'Serialization', value: 'Joblib .pkl' },
+      { label: 'Verified Accuracy', value: '~90%' },
+      { label: 'Metric Target', value: 'F1 Score & Precision' },
+      { label: 'Inference', value: 'Joblib Serialized' },
     ],
   },
   {
-    id: 'next-word-prediction',
+    id: 'next-word-prediction-rnn',
     title: 'Next Word Prediction using RNN',
-    type: 'Deep Learning / NLP',
-    domain: 'Sequential Modeling',
-    badge: '🚀 DEEP NEURAL STREAMLIT APP',
+    type: 'Deep Learning / Sequence Modeling',
+    domain: 'Generative NLP',
+    badge: '🧠 PYTORCH RNN',
     featured: false,
     summary:
-      'Trained a Recurrent Neural Network (RNN) in PyTorch on structured text sequence windows to predict subsequent tokens and deployed with an interactive UI.',
+      'Constructed a sequential character/word prediction deep learning architecture in PyTorch with an interactive Streamlit inference web app.',
     highlights: [
-      'Engineered sliding text sequence windows, token indexing dictionaries, and PyTorch DataLoaders.',
-      'Trained and optimized a multi-layer Recurrent Neural Network (RNN) with cross-entropy loss minimization.',
-      'Developed a real-time Streamlit web interface allowing recruiters to type prompts and view live generated next-word predictions.',
+      'Formulated sliding sequence tokenization windows with dynamic word-to-index embedding matrices.',
+      'Trained multi-layer Recurrent Neural Networks (RNN) with cross-entropy loss optimization.',
+      'Built a real-time Streamlit web app for prompt ingestion and live token generation.',
     ],
-    tech: ['Python', 'PyTorch', 'RNN', 'Deep Learning', 'Streamlit', 'NLP Sequences'],
+    tech: ['Python', 'PyTorch', 'RNN', 'Deep Learning', 'Streamlit', 'NLP'],
     metrics: [
       { label: 'Framework', value: 'PyTorch' },
-      { label: 'Architecture', value: 'RNN Recurrent' },
-      { label: 'Deployment', value: 'Streamlit UI' },
+      { label: 'Architecture', value: 'Multi-layer RNN' },
+      { label: 'Deployment', value: 'Streamlit Web UI' },
     ],
   },
   {
     id: 'naive-bayes-classification',
     title: 'Naive Bayes Text Classification Pipeline',
-    type: 'NLP / Probabilistic ML',
+    type: 'Probabilistic ML / NLP',
     domain: 'Text Categorization',
-    badge: '📝 PRODUCTION PIPELINE',
+    badge: '📝 MULTINOMIAL NB',
     featured: false,
     summary:
-      'Developed an end-to-end text classification pipeline leveraging probabilistic Bayes theorems to categorize unstructured documents into discrete domains.',
+      'Developed an end-to-end text categorization pipeline leveraging Bayes theorems to classify sparse textual data with statistical rigour.',
     highlights: [
-      'Standardized raw textual inputs using custom tokenization and feature extraction routines.',
-      'Trained Multinomial Naive Bayes classifier tailored for high-dimensional sparse textual data.',
-      'Evaluated precision, recall, and macro-F1 metrics to benchmark against baseline classifiers.',
+      'Converted high-dimensional textual documents into weighted statistical token features.',
+      'Trained Multinomial Naive Bayes classifier optimized for sparse word matrices.',
+      'Benchmarked macro-F1, precision, and recall scores against baseline models.',
     ],
-    tech: ['Python', 'TF-IDF', 'Multinomial NB', 'Scikit-learn', 'Text Processing'],
+    tech: ['Python', 'TF-IDF', 'Multinomial NB', 'Scikit-learn', 'NLP'],
     metrics: [
       { label: 'Model', value: 'Multinomial NB' },
       { label: 'Feature Space', value: 'TF-IDF Sparse' },
@@ -91,8 +90,6 @@ const VERIFIED_PROJECTS = [
 ];
 
 export default function Projects() {
-  const [activeTab, setActiveTab] = useState('all');
-
   return (
     <section id="projects" className="lux-projects">
       <div className="container">
@@ -111,149 +108,244 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Projects Stream */}
-        <div className="projects-container-flow">
+        {/* Silicon Valley 12-Column Asymmetrical Bento Grid */}
+        <div className="bento-grid-container">
           
-          {/* Laser Tracing Continuous Beam Wrapper for Flagship Capstone */}
-          <div className="laser-border-box reveal stagger-1">
-            <div className="project-flagship-card" style={{ border: 'none', background: 'transparent' }}>
-              <div className="flagship-glass-inner">
-                
-                {/* Left Column Info */}
-                <div className="flagship-content">
-                  <div className="flagship-top-badge">
-                    <span className="star-icon">★</span>
-                    <span>{VERIFIED_PROJECTS[0].badge}</span>
-                  </div>
+          {/* Bento Cell 1: Flagship Capstone (8 Columns) */}
+          <div className="bento-cell bento-span-8 spotlight-card reveal stagger-1">
+            <div className="bento-cell-inner">
+              
+              <div className="bento-badge-row">
+                <span className="bento-pill-badge badge-accent">
+                  {VERIFIED_PROJECTS[0].badge}
+                </span>
+                <span className="bento-domain-tag">{VERIFIED_PROJECTS[0].domain}</span>
+              </div>
 
-                  <h3 className="flagship-title">{VERIFIED_PROJECTS[0].title}</h3>
-                  <span className="flagship-sub">{VERIFIED_PROJECTS[0].domain}</span>
+              <h3 className="bento-headline">{VERIFIED_PROJECTS[0].title}</h3>
+              <p className="bento-summary">{VERIFIED_PROJECTS[0].summary}</p>
 
-                  <p className="flagship-summary">{VERIFIED_PROJECTS[0].summary}</p>
-
-                  <div className="flagship-bullet-list">
+              {/* Two-column internal layout: Highlights on left, visual pipeline terminal on right */}
+              <div className="bento-flagship-body">
+                <div className="flagship-left-highlights">
+                  <div className="bento-bullets">
                     {VERIFIED_PROJECTS[0].highlights.map((item, i) => (
-                      <div key={i} className="bullet-item">
-                        <span className="bullet-arrow">▸</span>
+                      <div key={i} className="bento-bullet-row">
+                        <span className="bullet-indicator">›</span>
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="flagship-tech-pills">
+                  <div className="bento-tech-row">
                     {VERIFIED_PROJECTS[0].tech.map((t) => (
-                      <span key={t} className="tech-pill">{t}</span>
+                      <span key={t} className="c-tech-tag">{t}</span>
                     ))}
                   </div>
                 </div>
 
-                {/* Right Column Interactive Visual Pipeline */}
-                <div className="flagship-pipeline-visual">
-                  <div className="pipeline-terminal-header">
-                    <span className="term-dot red"></span>
-                    <span className="term-dot yellow"></span>
-                    <span className="term-dot green"></span>
-                    <span className="term-title">student_risk_pipeline.py</span>
+                {/* Micro Pipeline Terminal */}
+                <div className="bento-terminal-box">
+                  <div className="terminal-topbar">
+                    <span className="t-dot t-red"></span>
+                    <span className="t-dot t-yellow"></span>
+                    <span className="t-dot t-green"></span>
+                    <span className="t-filename">student_risk_pipeline.py</span>
                   </div>
-
-                  <div className="pipeline-stages-stack">
-                    
-                    <div className="stage-row active-stage">
-                      <div className="stage-num">01</div>
-                      <div className="stage-info">
-                        <div className="stage-title">Data Ingestion & Cleaning</div>
-                        <div className="stage-meta">Handling missing values, outlier pruning</div>
-                      </div>
-                      <div className="stage-check">✓</div>
+                  <div className="terminal-stages">
+                    <div className="t-stage">
+                      <span className="t-num">01</span>
+                      <span className="t-name">Data Ingestion & Cleaning</span>
+                      <span className="t-check">✓</span>
                     </div>
-
-                    <div className="stage-connector"></div>
-
-                    <div className="stage-row active-stage">
-                      <div className="stage-num">02</div>
-                      <div className="stage-info">
-                        <div className="stage-title">Feature Engineering & Selection</div>
-                        <div className="stage-meta">Categorical encoding, exam trajectory scores</div>
-                      </div>
-                      <div className="stage-check">✓</div>
+                    <div className="t-stage">
+                      <span className="t-num">02</span>
+                      <span className="t-name">Feature Correlation Selection</span>
+                      <span className="t-check">✓</span>
                     </div>
-
-                    <div className="stage-connector"></div>
-
-                    <div className="stage-row active-stage">
-                      <div className="stage-num">03</div>
-                      <div className="stage-info">
-                        <div className="stage-title">Model Training & Benchmarking</div>
-                        <div className="stage-meta">Random Forest + Gradient Boosting tuning</div>
-                      </div>
-                      <div className="stage-check">✓</div>
+                    <div className="t-stage">
+                      <span className="t-num">03</span>
+                      <span className="t-name">RF & Gradient Boosting Tuning</span>
+                      <span className="t-check">✓</span>
                     </div>
-
-                    <div className="stage-connector"></div>
-
-                    <div className="stage-row active-stage">
-                      <div className="stage-num">04</div>
-                      <div className="stage-info">
-                        <div className="stage-title">Institutional Report Documentation</div>
-                        <div className="stage-meta">Flags at-risk students for academic counseling</div>
-                      </div>
-                      <div className="stage-check">✓</div>
+                    <div className="t-stage">
+                      <span className="t-num">04</span>
+                      <span className="t-name">Institutional Report Thesis</span>
+                      <span className="t-check">✓</span>
                     </div>
-
                   </div>
-
-                  <div className="pipeline-metrics-footer">
-                    <div className="p-metric">
-                      <span className="p-label">Algorithms</span>
-                      <span className="p-val">RF & GBDT</span>
+                  <div className="terminal-footer-metrics">
+                    <div className="tf-metric">
+                      <span className="tf-label">Models</span>
+                      <span className="tf-val">Random Forest & GBDT</span>
                     </div>
-                    <div className="p-metric">
-                      <span className="p-label">Classification</span>
-                      <span className="p-val">At-Risk Alert</span>
+                    <div className="tf-metric">
+                      <span className="tf-label">Deployment</span>
+                      <span className="tf-val">At-Risk Early Alert</span>
                     </div>
                   </div>
                 </div>
+              </div>
 
+            </div>
+          </div>
+
+          {/* Bento Cell 2: Secondary Highlight Sentiment Analysis (4 Columns) */}
+          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-2">
+            <div className="bento-cell-inner">
+              <div className="bento-badge-row">
+                <span className="bento-pill-badge badge-cyan">
+                  {VERIFIED_PROJECTS[1].badge}
+                </span>
+                <span className="bento-domain-tag">{VERIFIED_PROJECTS[1].type}</span>
+              </div>
+
+              <h3 className="bento-headline">{VERIFIED_PROJECTS[1].title}</h3>
+              <p className="bento-summary">{VERIFIED_PROJECTS[1].summary}</p>
+
+              <div className="bento-metrics-strip">
+                {VERIFIED_PROJECTS[1].metrics.map((m, i) => (
+                  <div key={i} className="bento-metric-chip">
+                    <span className="bm-label">{m.label}</span>
+                    <span className="bm-val">{m.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bento-bullets">
+                {VERIFIED_PROJECTS[1].highlights.map((item, i) => (
+                  <div key={i} className="bento-bullet-row">
+                    <span className="bullet-indicator">›</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bento-tech-row">
+                {VERIFIED_PROJECTS[1].tech.map((t) => (
+                  <span key={t} className="c-tech-tag">{t}</span>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Grid of Remaining Verified Projects */}
-          <div className="projects-sub-grid">
-            {VERIFIED_PROJECTS.slice(1).map((proj, idx) => (
-              <div key={proj.id} className={`project-compact-card reveal stagger-${idx + 1}`}>
-                
-                <div className="compact-header">
-                  <span className="compact-badge">{proj.badge}</span>
-                  <span className="compact-type">{proj.type}</span>
-                </div>
-
-                <h3 className="compact-title">{proj.title}</h3>
-                <p className="compact-summary">{proj.summary}</p>
-
-                <ul className="compact-highlights">
-                  {proj.highlights.map((h, i) => (
-                    <li key={i}>{h}</li>
-                  ))}
-                </ul>
-
-                <div className="compact-metrics-row">
-                  {proj.metrics.map((m, i) => (
-                    <div key={i} className="c-metric-cell">
-                      <span className="cm-label">{m.label}</span>
-                      <span className="cm-val">{m.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="compact-tech-tags">
-                  {proj.tech.map((t) => (
-                    <span key={t} className="c-tech-tag">{t}</span>
-                  ))}
-                </div>
-
+          {/* Bento Cell 3: Next Word Prediction RNN (4 Columns) */}
+          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-3">
+            <div className="bento-cell-inner">
+              <div className="bento-badge-row">
+                <span className="bento-pill-badge badge-indigo">
+                  {VERIFIED_PROJECTS[2].badge}
+                </span>
+                <span className="bento-domain-tag">{VERIFIED_PROJECTS[2].domain}</span>
               </div>
-            ))}
+
+              <h3 className="bento-headline">{VERIFIED_PROJECTS[2].title}</h3>
+              <p className="bento-summary">{VERIFIED_PROJECTS[2].summary}</p>
+
+              <div className="bento-metrics-strip">
+                {VERIFIED_PROJECTS[2].metrics.map((m, i) => (
+                  <div key={i} className="bento-metric-chip">
+                    <span className="bm-label">{m.label}</span>
+                    <span className="bm-val">{m.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bento-bullets">
+                {VERIFIED_PROJECTS[2].highlights.map((item, i) => (
+                  <div key={i} className="bento-bullet-row">
+                    <span className="bullet-indicator">›</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bento-tech-row">
+                {VERIFIED_PROJECTS[2].tech.map((t) => (
+                  <span key={t} className="c-tech-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bento Cell 4: Naive Bayes Classification (4 Columns) */}
+          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-4">
+            <div className="bento-cell-inner">
+              <div className="bento-badge-row">
+                <span className="bento-pill-badge badge-default">
+                  {VERIFIED_PROJECTS[3].badge}
+                </span>
+                <span className="bento-domain-tag">{VERIFIED_PROJECTS[3].domain}</span>
+              </div>
+
+              <h3 className="bento-headline">{VERIFIED_PROJECTS[3].title}</h3>
+              <p className="bento-summary">{VERIFIED_PROJECTS[3].summary}</p>
+
+              <div className="bento-metrics-strip">
+                {VERIFIED_PROJECTS[3].metrics.map((m, i) => (
+                  <div key={i} className="bento-metric-chip">
+                    <span className="bm-label">{m.label}</span>
+                    <span className="bm-val">{m.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bento-bullets">
+                {VERIFIED_PROJECTS[3].highlights.map((item, i) => (
+                  <div key={i} className="bento-bullet-row">
+                    <span className="bullet-indicator">›</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bento-tech-row">
+                {VERIFIED_PROJECTS[3].tech.map((t) => (
+                  <span key={t} className="c-tech-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bento Cell 5: Technical Ecosystem Deep Dive (4 Columns) */}
+          <div className="bento-cell bento-span-4 spotlight-card reveal stagger-4">
+            <div className="bento-cell-inner bento-deep-dive">
+              <div className="bento-badge-row">
+                <span className="bento-pill-badge badge-accent">
+                  ⚡ PRODUCTION ECOSYSTEM
+                </span>
+                <span className="bento-domain-tag">Engineering Standards</span>
+              </div>
+
+              <h3 className="bento-headline">Data Science & ML Pipeline Standards</h3>
+              <p className="bento-summary">
+                Rigorous mathematical foundations combined with modular Python code, Git version control, and reproducible Jupyter & VS Code workflows.
+              </p>
+
+              <div className="bento-spec-grid">
+                <div className="spec-card-cell">
+                  <span className="sc-val">Python & SQL</span>
+                  <span className="sc-desc">Core Languages</span>
+                </div>
+                <div className="spec-card-cell">
+                  <span className="sc-val">Scikit-learn</span>
+                  <span className="sc-desc">Supervised ML</span>
+                </div>
+                <div className="spec-card-cell">
+                  <span className="sc-val">PyTorch</span>
+                  <span className="sc-desc">Neural Sequences</span>
+                </div>
+                <div className="spec-card-cell">
+                  <span className="sc-val">Streamlit</span>
+                  <span className="sc-desc">Web Model UI</span>
+                </div>
+              </div>
+
+              <div className="bento-verified-footer">
+                <span className="verified-dot"></span>
+                <span>All implementations benchmarked with verified metrics</span>
+              </div>
+            </div>
           </div>
 
         </div>

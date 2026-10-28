@@ -1,137 +1,149 @@
-/* Executive Cinematic Hero Section */
+/* ==========================================================================
+   SILICON VALLEY DEVELOPER HERO (Linear / Vercel Minimalist Standard)
+   Metallic Gradient · Monospace Badges · Hairline Precision Telemetry
+   ========================================================================== */
+
 .lux-hero {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   position: relative;
   padding-top: 130px;
-  padding-bottom: 80px;
-  overflow: hidden;
+  padding-bottom: 70px;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
-  gap: 60px;
+  gap: 56px;
+  width: 100%;
 }
 
-/* Status Badge */
+/* Status Pill */
 .hero-status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 20px;
-  background: rgba(10, 19, 41, 0.7);
-  border: 1px solid rgba(45, 212, 191, 0.25);
-  border-radius: 100px;
-  font-family: var(--font-code);
-  font-size: 0.78rem;
-  color: var(--teal-bright);
-  margin-bottom: 24px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  gap: 10px;
+  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hairline-border);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .live-radar {
   position: relative;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .radar-core {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--teal-bright);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
 }
 
 .radar-ring {
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 1.5px solid var(--teal-bright);
-  animation: radarPing 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  border: 1px solid var(--accent-cyan);
+  animation: pingGlow 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
-@keyframes radarPing {
+@keyframes pingGlow {
   0% { transform: scale(0.5); opacity: 1; }
   100% { transform: scale(2.2); opacity: 0; }
 }
 
-/* Typography */
+/* Headline Typography with Silicon Valley Metallic Gradient */
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6.5vw, 5.2rem);
-  font-weight: 800;
-  color: var(--text-white);
-  line-height: 1.02;
+  font-size: clamp(2.8rem, 5.2vw, 4.6rem);
+  font-weight: 600;
+  line-height: 1.05;
   letter-spacing: -0.035em;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.65) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .highlight-glimmer {
-  background: linear-gradient(135deg, var(--teal-bright) 20%, var(--cyan-bright) 60%, #a7f3d0 100%);
+  background: linear-gradient(180deg, #FFFFFF 20%, #A5F3FC 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  filter: drop-shadow(0 0 25px rgba(45, 212, 191, 0.35));
 }
 
 .hero-role-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .role-prefix {
-  font-family: var(--font-code);
-  color: var(--teal-glow);
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .hero-role-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: -0.01em;
 }
 
 .hero-description {
-  font-size: 1.12rem;
-  color: var(--text-muted);
-  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
   max-width: 580px;
-  margin-bottom: 38px;
+  margin-bottom: 32px;
 }
 
 .hero-description strong {
-  color: var(--text-primary);
-  font-weight: 600;
+  color: #FFFFFF;
+  font-weight: 500;
 }
 
+/* Actions Row */
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-/* Metrics Bar */
+/* High-Impact Stat Metrics Bar */
 .hero-metrics-bar {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 32px;
-  margin-top: 52px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 28px;
+  margin-top: 40px;
+  padding: 16px 24px;
+  background: var(--surface-card);
+  border: 1px solid var(--hairline-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(16px);
 }
 
 .metric-cell {
@@ -141,48 +153,54 @@
 
 .metric-number {
   font-family: var(--font-display);
-  font-size: 1.9rem;
-  font-weight: 800;
-  color: var(--text-white);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #FFFFFF;
   line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .metric-number span {
-  color: var(--teal-bright);
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+  font-weight: 500;
 }
 
 .metric-label {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  font-weight: 500;
-  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
 }
 
 .metric-divider {
   width: 1px;
-  height: 38px;
+  height: 34px;
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Right Hologram Visual Container */
+/* ==========================================================================
+   SILICON VALLEY HOLOGRAPHIC TELEMETRY ENGINE
+   Hairline Orbitals · Glass Telemetry Chips
+   ========================================================================== */
 .hero-hologram {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 520px;
 }
 
 .hologram-stage {
   position: relative;
-  width: 440px;
-  height: 440px;
+  width: 380px;
+  height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Gyroscopic Reactor Rings */
+/* Precision Hairline Orbitals */
 .reactor-ring {
   position: absolute;
   border-radius: 50%;
@@ -190,88 +208,87 @@
 }
 
 .ring-outer {
-  width: 100%;
-  height: 100%;
-  border: 1px dashed rgba(45, 212, 191, 0.25);
-  animation: gyroSpin1 35s linear infinite;
-  box-shadow: 0 0 40px rgba(20, 184, 166, 0.06);
+  width: 340px;
+  height: 340px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  animation: spinClockwise 40s linear infinite;
 }
 
 .ring-mid {
-  width: 76%;
-  height: 76%;
-  border: 1.5px solid rgba(6, 182, 212, 0.2);
-  border-left-color: var(--teal-bright);
-  border-right-color: var(--cyan-bright);
-  animation: gyroSpin2 22s linear infinite reverse;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(6, 182, 212, 0.4);
+  animation: spinCounter 28s linear infinite;
 }
 
 .ring-inner {
-  width: 52%;
-  height: 52%;
-  border: 1px dashed rgba(45, 212, 191, 0.35);
-  animation: gyroSpin1 15s linear infinite;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: spinClockwise 20s linear infinite;
 }
 
-@keyframes gyroSpin1 {
+@keyframes spinClockwise {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes gyroSpin2 {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes spinCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 /* Center Core Orb */
 .reactor-core-orb {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #2dd4bf 0%, #0d9488 45%, #030712 90%);
+  background: rgba(13, 17, 23, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 30px rgba(79, 70, 229, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 50px rgba(45, 212, 191, 0.5), inset 0 2px 8px rgba(255, 255, 255, 0.6);
 }
 
 .orb-code-stream {
-  font-family: var(--font-code);
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
-  color: #030712;
+  color: #FFFFFF;
   letter-spacing: 0.05em;
 }
 
-/* Floating Telemetry HUD Chips */
+/* Hairline Telemetry Chips */
 .telemetry-chip {
   position: absolute;
-  padding: 14px 18px;
-  background: rgba(7, 13, 30, 0.85);
-  border: 1px solid rgba(45, 212, 191, 0.25);
-  border-radius: 14px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.15);
-  min-width: 210px;
-  transition: all 0.3s ease;
-  z-index: 10;
+  background: rgba(13, 17, 23, 0.85);
+  border: 1px solid var(--hairline-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+  z-index: 5;
+  width: 220px;
+  transition: transform 0.25s var(--ease-spring), border-color 0.25s ease;
 }
 
 .telemetry-chip:hover {
-  transform: translateY(-4px) scale(1.03);
-  border-color: var(--teal-bright);
+  border-color: var(--hairline-border-hover);
+  transform: translateY(-2px);
 }
 
 .chip-header {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-code);
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--text-dim);
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
   margin-bottom: 6px;
 }
 
@@ -279,90 +296,74 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--teal-bright);
-  box-shadow: 0 0 8px var(--teal-bright);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
 }
 
-.chip-led.led-cyan {
-  background: var(--cyan-bright);
-  box-shadow: 0 0 8px var(--cyan-bright);
+.led-cyan {
+  background: #38BDF8;
+  box-shadow: 0 0 6px #38BDF8;
 }
 
-.chip-led.led-purple {
-  background: #a855f7;
-  box-shadow: 0 0 8px #a855f7;
+.led-purple {
+  background: var(--accent-indigo);
+  box-shadow: 0 0 6px var(--accent-indigo);
 }
 
 .chip-metric {
-  font-family: var(--font-main);
-  font-size: 0.86rem;
-  font-weight: 700;
-  color: var(--text-white);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #FFFFFF;
   margin-bottom: 4px;
 }
 
 .chip-tag {
   font-size: 0.72rem;
-  color: var(--teal-bright);
-  font-family: var(--font-code);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
 }
 
 .chip-bar {
   width: 100%;
-  height: 4px;
+  height: 3px;
   background: rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
+  border-radius: 3px;
   overflow: hidden;
   margin-top: 6px;
 }
 
 .bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--teal-bright), var(--cyan-bright));
-  border-radius: 4px;
+  background: linear-gradient(90deg, #4F46E5, #06B6D4);
+  border-radius: 3px;
 }
 
-/* Chip Placements */
 .chip-top {
-  top: -15px;
-  right: 15px;
-  animation: floatHud1 6s ease-in-out infinite alternate;
+  top: -10px;
+  right: -10px;
 }
 
 .chip-bottom {
   bottom: 0px;
-  right: -25px;
-  animation: floatHud2 7s ease-in-out infinite alternate;
+  right: -20px;
 }
 
 .chip-left {
   top: 50%;
-  left: -45px;
+  left: -40px;
   transform: translateY(-50%);
-  animation: floatHud1 8s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes floatHud1 {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-12px); }
-}
-
-@keyframes floatHud2 {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(10px); }
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
   .lux-hero {
     min-height: auto;
-    padding-top: 120px;
-    padding-bottom: 60px;
+    padding-top: 110px;
+    padding-bottom: 50px;
   }
   .hero-grid {
     grid-template-columns: 1fr;
-    text-align: left;
-    gap: 40px;
+    gap: 36px;
   }
   .hero-hologram {
     display: none;
@@ -371,45 +372,30 @@
 
 @media (max-width: 640px) {
   .lux-hero {
-    padding-top: 90px;
-    padding-bottom: 50px;
-  }
-  .hero-status-badge {
-    font-size: 0.72rem;
-    padding: 6px 14px;
-    white-space: normal;
-    line-height: 1.4;
-    max-width: 100%;
+    padding-top: 85px;
+    padding-bottom: 40px;
   }
   .hero-name {
-    font-size: clamp(2.4rem, 8.5vw, 3.6rem);
+    font-size: clamp(2.35rem, 8.5vw, 3.4rem);
+    letter-spacing: -0.03em;
   }
   .hero-role-title {
-    font-size: 1.05rem;
-    line-height: 1.35;
+    font-size: 0.88rem;
   }
   .hero-description {
-    font-size: 0.98rem;
-    line-height: 1.7;
-    margin-bottom: 24px;
+    font-size: 0.95rem;
   }
   .hero-metrics-bar {
-    gap: 14px;
+    gap: 16px;
     flex-wrap: wrap;
-    padding: 16px;
-    background: rgba(11, 21, 40, 0.5);
-    border: 1px solid rgba(0, 210, 238, 0.15);
-    border-radius: 16px;
+    width: 100%;
+    padding: 14px 18px;
   }
   .metric-cell {
-    flex: 1 1 30%;
-    text-align: center;
+    flex: 1 1 35%;
   }
   .metric-number {
-    font-size: 1.6rem;
-  }
-  .metric-label {
-    font-size: 0.68rem;
+    font-size: 1.5rem;
   }
   .metric-divider {
     display: none;
@@ -417,11 +403,9 @@
   .hero-actions {
     flex-direction: column;
     width: 100%;
-    gap: 12px;
+    gap: 10px;
   }
   .btn-magnetic {
     width: 100%;
-    padding: 14px 20px;
-    justify-content: center;
   }
 }
