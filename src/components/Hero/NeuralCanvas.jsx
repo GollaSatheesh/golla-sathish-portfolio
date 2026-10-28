@@ -98,6 +98,12 @@ export default function NeuralCanvas() {
       ctx.scale(dpr, dpr);
     };
 
+    let scrollOffset = 0;
+    const handleScroll = () => {
+      scrollOffset = window.scrollY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     window.addEventListener('resize', handleResize);
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('touchmove', handleTouchMove, { passive: true });
@@ -131,8 +137,9 @@ export default function NeuralCanvas() {
         rotX += (targetRotX - rotX) * 0.06;
         rotY += (targetRotY - rotY) * 0.06;
 
-        const currentRotY = autoAngle + rotY;
-        const currentRotX = rotX * 0.6;
+        const scrollRot = scrollOffset * 0.0022;
+        const currentRotY = autoAngle + rotY + scrollRot;
+        const currentRotX = (rotX * 0.6) + Math.sin(scrollOffset * 0.0015) * 0.25;
 
         const projectedNodes = nodes.map((node) => {
           node.x += node.vx;
@@ -226,6 +233,7 @@ export default function NeuralCanvas() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('touchmove', handleTouchMove);

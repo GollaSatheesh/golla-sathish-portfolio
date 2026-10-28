@@ -97,6 +97,50 @@
   border: 1px solid var(--hairline-border);
 }
 
+/* Scroll-Driven Dynamic Pipeline Lighting */
+.workflow-matrix-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workflow-matrix-card.pipeline-active {
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  box-shadow: 0 12px 32px -8px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.workflow-matrix-card.pipeline-active .matrix-icon-bubble {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.workflow-matrix-card.pipeline-active .matrix-title {
+  color: #38bdf8;
+}
+
+.active-pulse-pip {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: pulse-dot 1.5s infinite;
+}
+
+.matrix-flow-arrow {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.matrix-flow-arrow.arrow-lit {
+  color: #38bdf8;
+  text-shadow: 0 0 8px #38bdf8;
+  transform: translateX(4px);
+}
+
 @media (max-width: 1080px) {
   .workflow-matrix-grid {
     grid-template-columns: repeat(2, 1fr);

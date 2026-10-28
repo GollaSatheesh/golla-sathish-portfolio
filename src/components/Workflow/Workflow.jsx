@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Workflow.css';
 
 const WORKFLOW_STEPS = [
@@ -37,6 +37,22 @@ const WORKFLOW_STEPS = [
 ];
 
 export default function Workflow() {
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById('workflow');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (rect.height + window.innerHeight * 0.4)));
+      const stepIndex = Math.min(3, Math.floor(progress * 4));
+      setActiveStep(stepIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section id="workflow" className="lux-workflow">
       <div className="container">
@@ -55,37 +71,50 @@ export default function Workflow() {
           </p>
         </div>
 
-        {/* 4-Step Interactive Process Matrix */}
+        {/* 4-Step Interactive Process Matrix with Scroll-Linked Progression */}
         <div className="workflow-matrix-grid">
-          {WORKFLOW_STEPS.map((wf, idx) => (
-            <div key={wf.step} className={`workflow-matrix-card reveal stagger-${idx + 1}`}>
-              
-              <div className="matrix-top">
-                <span className="matrix-phase-tag">{wf.step}</span>
-                <div className="matrix-icon-bubble">{wf.icon}</div>
-              </div>
-
-              <h3 className="matrix-title">{wf.title}</h3>
-              <p className="matrix-desc">{wf.description}</p>
-
-              <div className="matrix-deliverables">
-                <span className="deliv-label">KEY DELIVERABLES:</span>
-                <div className="deliv-tags">
-                  {wf.artifacts.map((art) => (
-                    <span key={art} className="deliv-pill">
-                      {art}
-                    </span>
-                  ))}
+          {WORKFLOW_STEPS.map((wf, idx) => {
+            const isCurrent = activeStep === idx;
+            const isCompleted = activeStep > idx;
+            return (
+              <div
+                key={wf.step}
+                className={`workflow-matrix-card reveal stagger-${idx + 1} ${
+                  isCurrent ? 'pipeline-active' : isCompleted ? 'pipeline-completed' : ''
+                }`}
+                onMouseEnter={() => setActiveStep(idx)}
+              >
+                
+                <div className="matrix-top">
+                  <span className="matrix-phase-tag">
+                    {wf.step}
+                    {isCurrent && <span className="active-pulse-pip"></span>}
+                  </span>
+                  <div className="matrix-icon-bubble">{wf.icon}</div>
                 </div>
+
+                <h3 className="matrix-title">{wf.title}</h3>
+                <p className="matrix-desc">{wf.description}</p>
+
+                <div className="matrix-deliverables">
+                  <span className="deliv-label">KEY DELIVERABLES:</span>
+                  <div className="deliv-tags">
+                    {wf.artifacts.map((art) => (
+                      <span key={art} className="deliv-pill">
+                        {art}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Connecting Accent Arrow */}
+                {idx < WORKFLOW_STEPS.length - 1 && (
+                  <div className={`matrix-flow-arrow ${isCompleted || isCurrent ? 'arrow-lit' : ''}`} aria-hidden="true">→</div>
+                )}
+
               </div>
-
-              {/* Connecting Accent Arrow */}
-              {idx < WORKFLOW_STEPS.length - 1 && (
-                <div className="matrix-flow-arrow" aria-hidden="true">→</div>
-              )}
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

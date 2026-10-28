@@ -11,6 +11,7 @@ import Education from './components/Education/Education';
 import Resume from './components/Resume/Resume';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import ScrollMagic from './components/ScrollMagic/ScrollMagic';
 
 function App() {
   useEffect(() => {
@@ -103,6 +104,7 @@ function App() {
       </div>
 
       <Navbar />
+      <ScrollMagic />
       <main id="main-content">
         <Hero />
         <TechMarquee />
