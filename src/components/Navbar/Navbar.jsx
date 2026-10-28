@@ -92,10 +92,7 @@ export default function Navbar() {
 
           {/* Silicon Valley Live Operational Status Pill */}
           <div className="dock-status-pill" title="Actively interviewing for Data Science and ML roles">
-            <span className="status-dot-pulse">
-              <span className="dot-core"></span>
-              <span className="dot-ripple"></span>
-            </span>
+            <span className="status-dot-core"></span>
             <span className="status-text">Operational / Open to Work</span>
           </div>
 
@@ -121,12 +118,6 @@ export default function Navbar() {
                     className={`dock-link ${activeSection === link.href.substring(1) ? 'active' : ''} ${link.special ? 'dock-link-special' : ''}`}
                     onClick={(e) => handleNavClick(e, link.href)}
                   >
-                    {link.special && (
-                      <span className="contact-beacon" aria-hidden="true">
-                        <span className="beacon-core"></span>
-                        <span className="beacon-halo"></span>
-                      </span>
-                    )}
                     <span>{link.name}</span>
                     {link.special && <span className="contact-arrow" aria-hidden="true">↗</span>}
                   </a>

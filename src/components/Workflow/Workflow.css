@@ -125,8 +125,6 @@
   margin-left: 6px;
   border-radius: 50%;
   background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-  animation: pulse-dot 1.5s infinite;
 }
 
 .matrix-flow-arrow {

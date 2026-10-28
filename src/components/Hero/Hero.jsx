@@ -84,10 +84,7 @@ export default function Hero() {
           
           {/* Executive Status Badge */}
           <div className="hero-status-badge reveal stagger-1">
-            <span className="live-radar">
-              <span className="radar-core"></span>
-              <span className="radar-ring"></span>
-            </span>
+            <span className="hero-status-dot"></span>
             <span className="status-text">Available for Entry-Level Data Science & ML Roles</span>
           </div>
 

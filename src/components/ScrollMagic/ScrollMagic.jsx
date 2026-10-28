@@ -146,7 +146,6 @@ export default function ScrollMagic() {
               >
                 <div className="spine-node-dot">
                   <span className="dot-core"></span>
-                  {isActive && <span className="dot-ripple"></span>}
                 </div>
                 <div className="spine-node-tooltip">
                   <span className="tooltip-icon">{sec.icon}</span>

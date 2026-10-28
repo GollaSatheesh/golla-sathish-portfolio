@@ -38,8 +38,6 @@
   height: 6px;
   border-radius: 50%;
   background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-  animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .marquee-subtitle {
@@ -161,17 +159,6 @@
   font-size: 0.7rem;
   color: var(--text-tertiary);
   letter-spacing: 0.02em;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.6;
-  }
 }
 
 @media (max-width: 768px) {

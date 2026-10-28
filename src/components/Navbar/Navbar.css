@@ -132,35 +132,12 @@
   flex-shrink: 0;
 }
 
-.status-dot-pulse {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dot-core {
+.status-dot-core {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--accent-emerald);
-  box-shadow: 0 0 6px var(--accent-emerald);
-}
-
-.dot-ripple {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-emerald);
-  animation: pulseRipple 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-
-@keyframes pulseRipple {
-  0% { transform: scale(0.6); opacity: 1; }
-  100% { transform: scale(2.2); opacity: 0; }
+  flex-shrink: 0;
 }
 
 .status-text {
@@ -245,37 +222,6 @@
   border-color: #38bdf8 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
-}
-
-.contact-beacon {
-  position: relative;
-  width: 6px;
-  height: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.beacon-core {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-}
-
-.beacon-halo {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1px solid rgba(56, 189, 248, 0.7);
-  animation: beacon-ping 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-
-@keyframes beacon-ping {
-  0% { transform: scale(0.6); opacity: 1; }
-  100% { transform: scale(2.2); opacity: 0; }
 }
 
 .contact-arrow {
