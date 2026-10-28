@@ -38,10 +38,12 @@
   --text-muted: #64748B;
   --text-dim: #475569;
 
-  /* 5. Typography Stacks (High-End Silicon Valley Geometric Sans) */
+  /* 5. Typography Stacks (High-End Silicon Valley Geometric Sans + Stylish Accents) */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-signature: 'Caveat', cursive, sans-serif;
 
   /* 6. Motion Standards (Linear Spring) */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
@@ -75,6 +77,20 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   letter-spacing: -0.03em;
+}
+
+/* Stylish Editorial Accents */
+.stylish-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.stylish-signature {
+  font-family: var(--font-signature);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 /* Custom Minimalist Scrollbar */

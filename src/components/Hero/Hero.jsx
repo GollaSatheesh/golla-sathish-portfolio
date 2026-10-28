@@ -90,7 +90,7 @@ export default function Hero() {
 
           {/* Main Name Hierarchy with Silicon Valley Metallic Gradient */}
           <h1 className="hero-name reveal stagger-2">
-            Golla <span className="highlight-glimmer">Sathish</span>
+            Golla <span className="highlight-glimmer hero-stylish-name">Sathish</span>
           </h1>
 
           {/* Subtitle with Continuous Animated Typewriter */}

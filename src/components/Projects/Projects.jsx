@@ -109,7 +109,7 @@ export default function Projects() {
             <span>Genuine Case Studies</span>
           </div>
           <h2 className="section-title">
-            Proven End-to-End <span className="gradient-text">Machine Learning Systems</span>
+            Proven End-to-End <span className="gradient-text stylish-serif-italic">Machine Learning Systems</span>
           </h2>
           <p className="section-subtitle">
             Every project listed is documented directly in Golla Sathish's resume with authentic methodology, metrics, and implementations.

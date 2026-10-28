@@ -13,7 +13,7 @@ export default function About() {
             <span>Executive Profile</span>
           </div>
           <h2 className="section-title">
-            Passionate About Turning Data Into <span className="gradient-text">Production Intelligence</span>
+            Passionate About Turning Data Into <span className="gradient-text stylish-serif-italic">Production Intelligence</span>
           </h2>
           <p className="section-subtitle">
             Based in Bangalore, India — bridging foundational Computer Science principles with cutting-edge machine learning and NLP.
@@ -61,6 +61,16 @@ export default function About() {
                 <span className="spec-label">LANGUAGES</span>
                 <span className="spec-val">English, Telugu (Native), Kannada</span>
               </div>
+            </div>
+
+            {/* Engineer's Verified Digital Autograph */}
+            <div className="about-signature-card">
+              <div className="signature-top-row">
+                <span className="signature-pill">ENGINEER'S AUTOGRAPH</span>
+                <span className="signature-tag">VERIFIED PORTFOLIO // 2026</span>
+              </div>
+              <div className="signature-script">Golla Sathish</div>
+              <div className="signature-subtext">Data Scientist &amp; Machine Learning Engineer</div>
             </div>
           </div>
 

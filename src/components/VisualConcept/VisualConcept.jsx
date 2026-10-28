@@ -78,7 +78,7 @@ export default function VisualConcept() {
             <span>Animation-Based Architecture Visualizer</span>
           </div>
           <h2 className="section-title">
-            Visualizing Complex <span className="gradient-text">ML Algorithmic Pipelines</span>
+            Visualizing Complex <span className="gradient-text stylish-serif-italic">ML Algorithmic Pipelines</span>
           </h2>
           <p className="section-subtitle">
             Inspired by interactive visual learning engines: Explore how Sathish’s core models process inputs, 

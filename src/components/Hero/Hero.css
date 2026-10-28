@@ -66,6 +66,15 @@
   display: inline-block;
 }
 
+.hero-stylish-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.08em;
+  letter-spacing: -0.01em;
+  padding-left: 2px;
+}
+
 .hero-role-wrapper {
   display: flex;
   align-items: center;
