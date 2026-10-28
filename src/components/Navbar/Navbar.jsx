@@ -77,15 +77,6 @@ export default function Navbar() {
   return (
     <div className={`dock-navbar-wrapper ${scrolled ? 'is-scrolled' : ''}`}>
       <header className={`dock-pill-container ${mobileMenuOpen ? 'menu-open' : ''}`}>
-        
-        {/* Subtle Hairline Scroll Progress Track */}
-        <div className="dock-scroll-track" aria-hidden="true">
-          <div
-            className="dock-scroll-indicator"
-            style={{ width: `${scrollProgress}%` }}
-          ></div>
-        </div>
-
         <div className="dock-inner-row">
           
           {/* Brand Identity */}

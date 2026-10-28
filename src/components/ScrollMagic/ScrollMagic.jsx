@@ -123,16 +123,6 @@ export default function ScrollMagic() {
 
   return (
     <>
-      {/* Top Liquid Progress Bar */}
-      <div className="scroll-magic-top-bar" aria-hidden="true">
-        <div
-          className="scroll-magic-fill"
-          style={{ width: `${scrollProgress}%` }}
-        >
-          <div className="scroll-magic-spark"></div>
-        </div>
-      </div>
-
       {/* Side Cyber Spine Timeline Navigator (Visible on Desktop) */}
       <nav className="cyber-spine-dock" aria-label="Scroll Journey Navigation">
         <div className="spine-rail">

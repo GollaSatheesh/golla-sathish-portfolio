@@ -1,38 +1,7 @@
 /* ==========================================================================
    SCROLL MAGIC ENGINE - Inspired by TAP Academy Scroll Dynamics
-   GSAP-driven Cyber Spine · Liquid Laser Progress · Parallax Atmosphere
+   GSAP-driven Cyber Spine · Parallax Atmosphere
    ========================================================================== */
-
-/* Top Liquid Laser Progress Bar */
-.scroll-magic-top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.03);
-  z-index: 9999;
-  pointer-events: none;
-}
-
-.scroll-magic-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4f46e5 0%, #38bdf8 50%, #22d3ee 100%);
-  position: relative;
-  transition: width 0.1s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7), 0 0 20px rgba(79, 70, 229, 0.5);
-}
-
-.scroll-magic-spark {
-  position: absolute;
-  right: 0;
-  top: -2px;
-  width: 7px;
-  height: 7px;
-  background: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 12px 3px #38bdf8, 0 0 24px 6px #ffffff;
-}
 
 /* Side Cyber Spine Timeline Navigator */
 .cyber-spine-dock {
