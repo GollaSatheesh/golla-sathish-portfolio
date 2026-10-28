@@ -2,6 +2,39 @@ import React, { useEffect, useRef, useState } from 'react';
 import NeuralCanvas from './NeuralCanvas';
 import './Hero.css';
 
+// Live Continuous Typewriter Hook/Component
+function Typewriter({ words, delay = 2400 }) {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+
+  useEffect(() => {
+    if (subIndex === words[index].length + 1 && !reverse) {
+      const timeout = setTimeout(() => setReverse(true), delay);
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 30 : 65);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, words, delay]);
+
+  return (
+    <span className="typewriter-text">
+      {words[index].substring(0, subIndex)}
+      <span className="typewriter-cursor">|</span>
+    </span>
+  );
+}
+
 function AnimatedNumber({ target, prefix = '', suffix = '' }) {
   const [val, setVal] = useState(0);
   const ref = useRef(null);
@@ -15,7 +48,6 @@ function AnimatedNumber({ target, prefix = '', suffix = '' }) {
         const step = (timestamp) => {
           if (!startTime) startTime = timestamp;
           const progress = Math.min((timestamp - startTime) / duration, 1);
-          // Ease-out cubic
           const ease = 1 - Math.pow(1 - progress, 3);
           setVal(Math.floor(ease * target));
           if (progress < 1) {
@@ -64,10 +96,17 @@ export default function Hero() {
             Golla <span className="highlight-glimmer">Sathish</span>
           </h1>
 
-          {/* Subtitle / Architectural Headline */}
+          {/* Subtitle with Continuous Animated Typewriter */}
           <div className="hero-role-wrapper reveal stagger-2">
             <span className="role-prefix">//</span>
-            <span className="hero-role-title">Data Scientist & Machine Learning Engineer</span>
+            <span className="hero-role-title">
+              <Typewriter words={[
+                "Data Scientist & Machine Learning Engineer",
+                "PyTorch Neural Sequence Architect",
+                "NLP & Sentiment Analysis Engineer (~90% Acc)",
+                "Predictive Systems & Academic Risk Modeling"
+              ]} />
+            </span>
           </div>
 
           {/* Precision Bio Statement */}

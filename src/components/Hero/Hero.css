@@ -109,6 +109,19 @@
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: -0.01em;
+  min-height: 24px;
+}
+
+.typewriter-cursor {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  margin-left: 2px;
+  animation: cursorBlink 0.8s infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-description {

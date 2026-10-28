@@ -29,30 +29,49 @@ function App() {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach((el) => observer.observe(el));
 
-    // 2. Linear / Vercel Dynamic Spotlight Effect (hairline border illumination)
-    const handleGlobalSpotlight = (e) => {
-      const cards = document.querySelectorAll(
-        '.spotlight-card, .bento-card, .project-flagship-card, .project-compact-card, .about-glass-card, .skill-domain-card, .edu-card, .workflow-matrix-card, .resume-billboard-card, .contact-channels-card, .contact-form-card'
-      );
-      cards.forEach((card) => {
+    // 2. 3D Gyroscopic Card Tilt & Spotlight Engine
+    const tiltCards = document.querySelectorAll(
+      '.bento-cell, .spotlight-card, .model-playground-card, .about-glass-card, .skill-domain-card, .edu-card, .workflow-matrix-card, .resume-billboard-card, .contact-channels-card, .contact-form-card'
+    );
+
+    const cleanups = [];
+    tiltCards.forEach((card) => {
+      const onMove = (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Subtle responsive 3D tilt
+        const rotateX = ((y - centerY) / centerY) * -4.5;
+        const rotateY = ((x - centerX) / centerX) * 4.5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
+      };
+
+      const onLeave = () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      };
+
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', onLeave);
+      cleanups.push(() => {
+        card.removeEventListener('mousemove', onMove);
+        card.removeEventListener('mouseleave', onLeave);
       });
-    };
-    window.addEventListener('mousemove', handleGlobalSpotlight, { passive: true });
+    });
 
     // 3. Magnetic Buttons Snapping Engine
     const magneticBtns = document.querySelectorAll('.btn-magnetic');
-    const cleanups = [];
     magneticBtns.forEach((btn) => {
       const onBtnMove = (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - (rect.left + rect.width / 2);
         const y = e.clientY - (rect.top + rect.height / 2);
-        btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
       };
       const onBtnLeave = () => {
         btn.style.transform = 'translate(0px, 0px)';
@@ -67,7 +86,6 @@ function App() {
     });
 
     return () => {
-      window.removeEventListener('mousemove', handleGlobalSpotlight);
       revealElements.forEach((el) => observer.unobserve(el));
       cleanups.forEach((cleanup) => cleanup());
     };
