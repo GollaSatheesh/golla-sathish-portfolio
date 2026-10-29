@@ -3,51 +3,75 @@ import './VisualConcept.css';
 
 const CONCEPTS = [
   {
-    id: 'random-forest',
-    title: 'Random Forest Ensemble Voting',
-    domain: 'Supervised ML / Institutional Capstone',
-    badge: 'PARALLEL ENSEMBLE',
+    id: 'student-logistic',
+    title: 'Student Performance App (Logistic Regression)',
+    domain: 'Machine Learning / Classification',
+    badge: '92% RECALL (FAILING STUDENTS)',
+    liveDemo: 'https://student-performance-prediction-s.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh/student-performance-prediction',
     summary:
-      'Visual demonstration of how Sathish’s Student Performance Prediction system splits feature spaces across bootstrapped decision trees to aggregate a resilient majority vote.',
+      'Interactive demonstration of Sathish’s Logistic Regression model on 395 student records predicting pass/fail from first- and second-period grades (G1 & G2) while preventing target leakage.',
   },
   {
-    id: 'nlp-tfidf',
-    title: 'NLP Tokenization & TF-IDF Vector Space',
-    domain: 'Natural Language Processing',
-    badge: 'VECTOR SPACES',
+    id: 'mnist-cnn',
+    title: 'MNIST 2-Layer CNN (98.72% Accuracy)',
+    domain: 'Computer Vision / PyTorch',
+    badge: '206K PARAMETERS // ADAM',
+    liveDemo: 'https://mnist-digit-classifiergit.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh/mnist-digit-classifier',
     summary:
-      'Visual breakdown of how unstructured text is parsed, tokenized, weighted via Term Frequency-Inverse Document Frequency, and projected for ~90% classification accuracy.',
+      'Visual breakdown of the 2-layer CNN trained in PyTorch on 60,000 images, reducing training loss from 0.23 to 0.02 across 5 epochs and reaching 98.72% on the 10,000 test set.',
   },
   {
-    id: 'rnn-sequence',
-    title: 'PyTorch RNN Recurrent State Flow',
-    domain: 'Deep Learning / Sequence Modeling',
-    badge: 'TEMPORAL MEMORY',
+    id: 'rag-reranking',
+    title: 'Two-Stage RAG with Cross-Encoder Reranker',
+    domain: 'Generative AI / LangChain & FAISS',
+    badge: '72% CONTEXT REDUCTION',
+    liveDemo: 'https://ragusingreranking-w8i533qzzf2djpe8ptau6c.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh/RagReranking',
     summary:
-      'Step-by-step sequential feedback loop showing how recurrent hidden states retain contextual memory across successive time steps to predict the next token.',
+      'Visual representation of LangChain document splitting (18 chunks), FAISS dense retrieval, and ms-marco cross-encoder reranking that cuts context by 72% before Groq LLM inference.',
   },
 ];
 
 export default function VisualConcept() {
-  const [activeTab, setActiveTab] = useState('random-forest');
+  const [activeTab, setActiveTab] = useState('student-logistic');
   const [animating, setAnimating] = useState(false);
   const [step, setStep] = useState(0);
 
-  // Random Forest interactive state
-  const [attendance, setAttendance] = useState(85);
-  const [midtermScore, setMidtermScore] = useState(78);
+  // Student Performance interactive state (G1, G2 grades: 0 to 20 scale)
+  const [g1Grade, setG1Grade] = useState(12);
+  const [g2Grade, setG2Grade] = useState(11);
 
-  // NLP interactive state
-  const [selectedTextIndex, setSelectedTextIndex] = useState(0);
-  const nlpSentences = [
-    { text: 'Model delivers outstanding predictive accuracy in validation tests.', sentiment: 'Positive', score: 94.8 },
-    { text: 'Severe data leakage detected causing catastrophic validation degradation.', sentiment: 'Negative', score: 91.2 },
-    { text: 'Standardized baseline classification pipeline with linear parameters.', sentiment: 'Neutral', score: 72.4 },
+  // MNIST interactive state
+  const [selectedDigit, setSelectedDigit] = useState(7);
+  const mnistSamples = [
+    { digit: 0, conf: '99.1%', loss: '0.018' },
+    { digit: 3, conf: '98.5%', loss: '0.022' },
+    { digit: 7, conf: '99.4%', loss: '0.015' },
+    { digit: 9, conf: '98.2%', loss: '0.024' },
   ];
 
-  // RNN interactive state
-  const [rnnStep, setRnnStep] = useState(0);
-  const rnnTokens = ['Machine', 'Learning', 'Engineer', 'in', 'Bangalore'];
+  // RAG interactive state
+  const [selectedQueryIdx, setSelectedQueryIdx] = useState(0);
+  const ragQueries = [
+    {
+      q: 'How does the cross-encoder reduce context overhead?',
+      totalChunks: 18,
+      topK: 5,
+      reduction: '72.2%',
+      model: 'ms-marco-MiniLM-L-6-v2',
+      llm: 'gpt-oss-120b (Groq API)',
+    },
+    {
+      q: 'What is the embedding chunk size and overlap?',
+      totalChunks: 18,
+      topK: 5,
+      reduction: '72.2%',
+      model: 'MiniLM-L6-v2 + FAISS',
+      llm: 'gpt-oss-120b (Groq API)',
+    },
+  ];
 
   useEffect(() => {
     let timer;
@@ -59,13 +83,16 @@ export default function VisualConcept() {
     return () => clearInterval(timer);
   }, [animating]);
 
-  // Derived Random Forest Predictions based on inputs
-  const tree1Pred = attendance > 75 ? 'Low Risk' : 'High Risk';
-  const tree2Pred = midtermScore > 65 ? 'Low Risk' : 'High Risk';
-  const tree3Pred = (attendance + midtermScore) / 2 > 70 ? 'Low Risk' : 'High Risk';
-  const votesLowRisk = [tree1Pred, tree2Pred, tree3Pred].filter(p => p === 'Low Risk').length;
-  const finalDecision = votesLowRisk >= 2 ? 'Low Academic Risk (Pass Track)' : 'High Academic Risk (Intervention Needed)';
-  const decisionClass = votesLowRisk >= 2 ? 'positive' : 'negative';
+  // Derived Logistic Regression Prediction: z = w1*G1 + w2*G2 - threshold
+  const scoreRaw = g1Grade * 0.45 + g2Grade * 0.55;
+  const isPassing = scoreRaw >= 10;
+  const confidence = isPassing
+    ? Math.min(99, Math.round(50 + (scoreRaw - 10) * 5))
+    : Math.min(99, Math.round(50 + (10 - scoreRaw) * 6));
+  const finalOutcome = isPassing ? 'Pass / Academic Safe' : 'Fail Risk (Needs Early Counseling)';
+  const outcomeClass = isPassing ? 'positive' : 'negative';
+
+  const activeObj = CONCEPTS.find((c) => c.id === activeTab);
 
   return (
     <section id="visualizer" className="lux-visual-concept">
@@ -75,18 +102,18 @@ export default function VisualConcept() {
         <div className="visual-header reveal">
           <div className="section-badge">
             <span className="dot"></span>
-            <span>Animation-Based Architecture Visualizer</span>
+            <span>Resume-Verified Architecture Visualizer</span>
           </div>
           <h2 className="section-title">
             Visualizing Complex <span className="gradient-text stylish-serif-italic">ML Algorithmic Pipelines</span>
           </h2>
           <p className="section-subtitle">
-            Inspired by interactive visual learning engines: Explore how Sathish’s core models process inputs, 
-            evaluate decision boundaries, and generate verified inferences in real time.
+            Explore how Sathish’s verified projects process data, optimize parameters, and synthesize predictions. 
+            All models are deployed live with Streamlit and GitHub open-source code.
           </p>
         </div>
 
-        {/* Navigation Tabs (TAP Academy Style) */}
+        {/* Navigation Tabs */}
         <div className="concept-nav-tabs reveal stagger-1">
           {CONCEPTS.map((c) => (
             <button
@@ -112,306 +139,274 @@ export default function VisualConcept() {
               <span className="terminal-dot red"></span>
               <span className="terminal-dot yellow"></span>
               <span className="terminal-dot green"></span>
-              <span className="active-concept-name">
-                {CONCEPTS.find(c => c.id === activeTab)?.title}
-              </span>
+              <span className="active-concept-name">{activeObj?.title}</span>
             </div>
+            
             <div className="concept-actions">
-              <button
-                className={`pulse-toggle-btn ${animating ? 'active' : ''}`}
-                onClick={() => setAnimating(!animating)}
-              >
-                <span className="pulse-icon">{animating ? '⏸' : '▶'}</span>
-                <span>{animating ? 'Pause Animation' : 'Animate Data Flow'}</span>
-              </button>
+              {activeObj?.liveDemo && (
+                <a
+                  href={activeObj.liveDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="concept-link-pill"
+                >
+                  <span>Live Demo ↗</span>
+                </a>
+              )}
+              {activeObj?.github && (
+                <a
+                  href={activeObj.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="concept-link-pill"
+                >
+                  <span>GitHub ↗</span>
+                </a>
+              )}
             </div>
           </div>
 
           <div className="concept-summary-banner">
-            <p>{CONCEPTS.find(c => c.id === activeTab)?.summary}</p>
+            <p>{activeObj?.summary}</p>
           </div>
 
-          {/* VISUALIZER 1: RANDOM FOREST ENSEMBLE */}
-          {activeTab === 'random-forest' && (
+          {/* VISUALIZER 1: STUDENT PERFORMANCE LOGISTIC REGRESSION */}
+          {activeTab === 'student-logistic' && (
             <div className="visual-body rf-visual">
               {/* Interactive Control Sliders */}
               <div className="rf-controls-panel">
                 <div className="rf-control-group">
                   <div className="rf-control-header">
-                    <label>Feature 1: Student Attendance ({attendance}%)</label>
-                    <span className="feature-val">{attendance}%</span>
+                    <label>First-Period Grade (G1: {g1Grade}/20)</label>
+                    <span className="feature-val">{g1Grade} / 20</span>
                   </div>
                   <input
                     type="range"
-                    min="40"
-                    max="100"
-                    value={attendance}
-                    onChange={(e) => setAttendance(Number(e.target.value))}
+                    min="0"
+                    max="20"
+                    value={g1Grade}
+                    onChange={(e) => setG1Grade(Number(e.target.value))}
                     className="rf-range-slider"
                   />
                 </div>
 
                 <div className="rf-control-group">
                   <div className="rf-control-header">
-                    <label>Feature 2: Midterm Exam Score ({midtermScore}/100)</label>
-                    <span className="feature-val">{midtermScore}/100</span>
+                    <label>Second-Period Grade (G2: {g2Grade}/20)</label>
+                    <span className="feature-val">{g2Grade} / 20</span>
                   </div>
                   <input
                     type="range"
-                    min="30"
-                    max="100"
-                    value={midtermScore}
-                    onChange={(e) => setMidtermScore(Number(e.target.value))}
+                    min="0"
+                    max="20"
+                    value={g2Grade}
+                    onChange={(e) => setG2Grade(Number(e.target.value))}
                     className="rf-range-slider"
                   />
                 </div>
               </div>
 
-              {/* Animated Architecture Diagram */}
+              {/* Architecture Flow */}
               <div className="rf-architecture-flow">
-                {/* Input Node */}
-                <div className={`flow-node input-node ${step >= 0 ? 'active-pulse' : ''}`}>
+                <div className="flow-node input-node active-pulse">
                   <div className="node-icon">📥</div>
-                  <div className="node-label">Input Sample Vector</div>
-                  <div className="node-sub">[Att: {attendance}%, Midterm: {midtermScore}]</div>
+                  <div className="node-label">395 Student Records (Stratified 80/20 Split)</div>
+                  <div className="node-sub">[Features: G1={g1Grade}, G2={g2Grade} • Final Grade G3 Excluded (Zero Leakage)]</div>
                 </div>
 
-                {/* Flow Lines */}
-                <div className="flow-split-connector">
-                  <span className={`flow-packet packet-1 ${animating ? 'traveling' : ''}`}></span>
-                  <span className={`flow-packet packet-2 ${animating ? 'traveling' : ''}`}></span>
-                  <span className={`flow-packet packet-3 ${animating ? 'traveling' : ''}`}></span>
-                </div>
-
-                {/* 3 Trees */}
                 <div className="rf-trees-row">
-                  {/* Tree 1 */}
-                  <div className={`rf-tree-card ${tree1Pred === 'Low Risk' ? 'pred-low' : 'pred-high'}`}>
+                  <div className="rf-tree-card pred-low">
                     <div className="tree-header">
-                      <span className="tree-tag">Decision Tree #1</span>
-                      <span className="tree-feature">Rule: Attendance &gt; 75%</span>
+                      <span className="tree-tag">Step 01: Leakage Prevention</span>
+                      <span className="tree-feature">Target Excluded</span>
                     </div>
-                    <div className="tree-eval">
-                      {attendance > 75 ? 'Condition: TRUE' : 'Condition: FALSE'}
-                    </div>
-                    <div className="tree-outcome">
-                      Vote: <strong>{tree1Pred}</strong>
-                    </div>
+                    <div className="tree-eval">Final Exam G3 Omitted</div>
+                    <div className="tree-outcome">Prevents Overfitting: <strong>TRUE</strong></div>
                   </div>
 
-                  {/* Tree 2 */}
-                  <div className={`rf-tree-card ${tree2Pred === 'Low Risk' ? 'pred-low' : 'pred-high'}`}>
+                  <div className="rf-tree-card pred-low">
                     <div className="tree-header">
-                      <span className="tree-tag">Decision Tree #2</span>
-                      <span className="tree-feature">Rule: Midterm &gt; 65</span>
+                      <span className="tree-tag">Step 02: Sigmoid Boundary</span>
+                      <span className="tree-feature">z = w₁·G₁ + w₂·G₂ + b</span>
                     </div>
-                    <div className="tree-eval">
-                      {midtermScore > 65 ? 'Condition: TRUE' : 'Condition: FALSE'}
-                    </div>
-                    <div className="tree-outcome">
-                      Vote: <strong>{tree2Pred}</strong>
-                    </div>
+                    <div className="tree-eval">Calculated Score: {scoreRaw.toFixed(1)} / 20</div>
+                    <div className="tree-outcome">Threshold: <strong>10.0 Passing</strong></div>
                   </div>
 
-                  {/* Tree 3 */}
-                  <div className={`rf-tree-card ${tree3Pred === 'Low Risk' ? 'pred-low' : 'pred-high'}`}>
+                  <div className={`rf-tree-card ${isPassing ? 'pred-low' : 'pred-high'}`}>
                     <div className="tree-header">
-                      <span className="tree-tag">Decision Tree #3</span>
-                      <span className="tree-feature">Rule: Composite Avg &gt; 70</span>
+                      <span className="tree-tag">Step 03: Proactive Alert</span>
+                      <span className="tree-feature">Failing Catch Rate</span>
                     </div>
-                    <div className="tree-eval">
-                      {(attendance + midtermScore) / 2 > 70 ? 'Condition: TRUE' : 'Condition: FALSE'}
-                    </div>
-                    <div className="tree-outcome">
-                      Vote: <strong>{tree3Pred}</strong>
-                    </div>
+                    <div className="tree-eval">92% Recall (24 of 26)</div>
+                    <div className="tree-outcome">Status: <strong>{isPassing ? 'On Track' : 'Alert Triggered'}</strong></div>
                   </div>
                 </div>
 
-                {/* Majority Voting Output */}
-                <div className={`rf-ensemble-result ${decisionClass}`}>
+                {/* Outcome Card */}
+                <div className={`rf-ensemble-result ${outcomeClass}`}>
                   <div className="result-header">
-                    <span className="result-badge">MAJORITY VOTING AGGREGATOR</span>
-                    <span className="vote-count">{votesLowRisk} vs {3 - votesLowRisk} Tally</span>
+                    <span className="result-badge">LOGISTIC REGRESSION INFERENCE</span>
+                    <span className="vote-count">87.3% Test Acc vs 67% Baseline</span>
                   </div>
                   <div className="result-prediction">
-                    Final Model Output: <strong>{finalDecision}</strong>
+                    Predicted Trajectory: <strong>{finalOutcome}</strong>
                   </div>
                   <div className="result-footer">
-                    <span>Ensemble Confidence: <strong>{Math.round((votesLowRisk >= 2 ? votesLowRisk : 3 - votesLowRisk) / 3 * 100)}%</strong></span>
-                    <span>Verified Thesis Implementation</span>
+                    <span>Model Confidence: <strong>{confidence}%</strong></span>
+                    <span>Verified Resume App • 395 Records Split</span>
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* VISUALIZER 2: NLP TF-IDF & VECTORIZATION */}
-          {activeTab === 'nlp-tfidf' && (
-            <div className="visual-body nlp-visual">
-              {/* Preset Selector */}
+          {/* VISUALIZER 2: MNIST 2-LAYER CNN */}
+          {activeTab === 'mnist-cnn' && (
+            <div className="visual-body cnn-visual">
               <div className="nlp-preset-selector">
-                <span className="selector-label">Select Sample Linguistic Corpus:</span>
+                <span className="selector-label">Select Handwritten Digit Sample:</span>
                 <div className="preset-buttons">
-                  {nlpSentences.map((s, idx) => (
+                  {mnistSamples.map((s) => (
                     <button
-                      key={idx}
-                      className={`preset-btn ${selectedTextIndex === idx ? 'active' : ''}`}
-                      onClick={() => setSelectedTextIndex(idx)}
+                      key={s.digit}
+                      className={`preset-btn ${selectedDigit === s.digit ? 'active' : ''}`}
+                      onClick={() => setSelectedDigit(s.digit)}
                     >
-                      Sample #{idx + 1} ({s.sentiment})
+                      Digit: "{s.digit}" ({s.conf})
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Step 1: Tokenizer Flow */}
+              {/* CNN Pipeline Stages */}
               <div className="nlp-pipeline-stage">
                 <div className="stage-title">
                   <span className="stage-num">01</span>
-                  <span>Custom Regex Tokenization & Stopword Elimination</span>
+                  <span>Input 28×28 Grayscale Matrix &amp; 2-Layer Conv2D Architecture</span>
                 </div>
                 <div className="token-chips-grid">
-                  {nlpSentences[selectedTextIndex].text
-                    .toLowerCase()
-                    .replace(/[^a-z0-9 ]/g, '')
-                    .split(' ')
-                    .filter(w => !['in', 'with', 'the', 'and', 'a', 'to'].includes(w))
-                    .map((token, i) => (
-                      <span key={i} className="token-chip">
-                        <span className="token-prefix">token_{i}:</span> {token}
-                      </span>
-                    ))}
+                  <span className="token-chip"><span className="token-prefix">input:</span> [1, 28, 28]</span>
+                  <span className="token-chip"><span className="token-prefix">conv1:</span> 2D Conv (3×3) + ReLU</span>
+                  <span className="token-chip"><span className="token-prefix">pool:</span> MaxPool (2×2)</span>
+                  <span className="token-chip"><span className="token-prefix">conv2:</span> 2D Conv (3×3) + ReLU</span>
+                  <span className="token-chip"><span className="token-prefix">params:</span> 206,922 Total</span>
+                  <span className="token-chip"><span className="token-prefix">optimizer:</span> Adam (lr=0.001, bs=64)</span>
                 </div>
               </div>
 
-              {/* Step 2: TF-IDF Weight Calculation */}
               <div className="nlp-pipeline-stage">
                 <div className="stage-title">
                   <span className="stage-num">02</span>
-                  <span>Term Frequency - Inverse Document Frequency (TF-IDF Matrix)</span>
+                  <span>Training Loss Convergence (5 Epochs)</span>
                 </div>
                 <div className="tfidf-bars-container">
                   {[
-                    { term: 'accuracy', weight: 0.88, idf: 'High' },
-                    { term: 'predictive', weight: 0.74, idf: 'Med-High' },
-                    { term: 'validation', weight: 0.62, idf: 'Med' },
-                    { term: 'leakage', weight: selectedTextIndex === 1 ? 0.95 : 0.05, idf: 'High' },
-                    { term: 'degradation', weight: selectedTextIndex === 1 ? 0.92 : 0.02, idf: 'High' },
-                    { term: 'baseline', weight: selectedTextIndex === 2 ? 0.79 : 0.12, idf: 'Med' },
-                  ].map((bar) => (
-                    <div key={bar.term} className="tfidf-bar-row">
-                      <span className="term-name">{bar.term}</span>
+                    { epoch: 'Epoch 1', loss: '0.23', barW: '100%' },
+                    { epoch: 'Epoch 2', loss: '0.11', barW: '48%' },
+                    { epoch: 'Epoch 3', loss: '0.06', barW: '26%' },
+                    { epoch: 'Epoch 4', loss: '0.03', barW: '13%' },
+                    { epoch: 'Epoch 5 (Final)', loss: '0.02', barW: '8%' },
+                  ].map((row) => (
+                    <div key={row.epoch} className="tfidf-bar-row">
+                      <span className="term-name">{row.epoch}</span>
                       <div className="bar-track">
-                        <div
-                          className="bar-fill"
-                          style={{
-                            width: `${bar.weight * 100}%`,
-                            background: bar.weight > 0.7 ? '#38bdf8' : 'rgba(56, 189, 248, 0.4)'
-                          }}
-                        ></div>
+                        <div className="bar-fill" style={{ width: row.barW, background: '#38bdf8' }}></div>
                       </div>
-                      <span className="bar-val">{bar.weight.toFixed(2)}</span>
+                      <span className="bar-val">loss: {row.loss}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Step 3: Classifier Hyperplane Output */}
               <div className="nlp-pipeline-stage result-stage">
                 <div className="stage-title">
                   <span className="stage-num">03</span>
-                  <span>Logistic Regression Hyperplane Classification (~90% Benchmark)</span>
+                  <span>10,000-Image Held-Out Test Set Benchmark</span>
                 </div>
                 <div className="nlp-classification-card">
                   <div className="nlp-score-badge">
-                    Class: <strong>{nlpSentences[selectedTextIndex].sentiment}</strong>
+                    Predicted Digit: <strong>{selectedDigit}</strong>
                   </div>
                   <div className="nlp-score-val">
-                    Confidence: <strong>{nlpSentences[selectedTextIndex].score}%</strong>
+                    Test Set Accuracy: <strong>98.72%</strong>
                   </div>
                   <div className="nlp-metric-proof">
-                    Stratified Train-Test Split • Joblib Serialized Inference
+                    PyTorch CNN Serialized • Deployed as Live Streamlit Canvas App
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* VISUALIZER 3: PYTORCH RNN RECURRENT FLOW */}
-          {activeTab === 'rnn-sequence' && (
-            <div className="visual-body rnn-visual">
-              <div className="rnn-sequence-strip">
-                <span className="seq-label">Time-Step Tokens:</span>
-                <div className="seq-tokens-row">
-                  {rnnTokens.map((tok, i) => (
+          {/* VISUALIZER 3: TWO-STAGE RAG WITH CROSS-ENCODER */}
+          {activeTab === 'rag-reranking' && (
+            <div className="visual-body rag-visual">
+              <div className="nlp-preset-selector">
+                <span className="selector-label">Select Sample RAG Query:</span>
+                <div className="preset-buttons">
+                  {ragQueries.map((rq, idx) => (
                     <button
-                      key={i}
-                      className={`seq-token-pill ${rnnStep === i ? 'current-step' : ''}`}
-                      onClick={() => setRnnStep(i)}
+                      key={idx}
+                      className={`preset-btn ${selectedQueryIdx === idx ? 'active' : ''}`}
+                      onClick={() => setSelectedQueryIdx(idx)}
                     >
-                      <span className="time-index">t={i}</span>
-                      <span className="tok-name">{tok}</span>
+                      Query #{idx + 1}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Step Flow Diagram */}
-              <div className="rnn-cell-stage">
-                <div className="rnn-cell-card">
-                  <div className="cell-header">
-                    <span>PyTorch Recurrent Unit [Step t = {rnnStep}]</span>
-                    <span className="cell-activation">Activation: tanh(W_hh · h_(t-1) + W_xh · x_t)</span>
+              {/* RAG Pipeline Breakdown */}
+              <div className="nlp-pipeline-stage">
+                <div className="stage-title">
+                  <span className="stage-num">Stage 1</span>
+                  <span>LangChain Chunker &amp; FAISS Dense Vector Retrieval</span>
+                </div>
+                <div className="token-chips-grid">
+                  <span className="token-chip"><span className="token-prefix">doc:</span> 720 Words</span>
+                  <span className="token-chip"><span className="token-prefix">chunking:</span> 18 Chunks (500 chars, 100 overlap)</span>
+                  <span className="token-chip"><span className="token-prefix">embedding:</span> MiniLM-L6-v2</span>
+                  <span className="token-chip"><span className="token-prefix">vector_db:</span> FAISS (Top-20 Retrieved)</span>
+                </div>
+              </div>
+
+              <div className="nlp-pipeline-stage">
+                <div className="stage-title">
+                  <span className="stage-num">Stage 2</span>
+                  <span>Cross-Encoder Reranker (ms-marco-MiniLM-L-6-v2)</span>
+                </div>
+                <div className="tfidf-bars-container">
+                  <div className="tfidf-bar-row">
+                    <span className="term-name">Initial Chunks</span>
+                    <div className="bar-track"><div className="bar-fill" style={{ width: '100%', background: 'rgba(255,255,255,0.2)' }}></div></div>
+                    <span className="bar-val">18 chunks</span>
                   </div>
-
-                  <div className="cell-interactive-visual">
-                    <div className="rnn-input-box">
-                      <span className="box-tag">Input Token x_t</span>
-                      <span className="box-val">"{rnnTokens[rnnStep]}"</span>
-                    </div>
-
-                    <div className="recurrent-loop">
-                      <div className="loop-indicator">
-                        <span className="loop-arrow">↺</span>
-                        <span>Hidden Memory State h_{rnnStep}</span>
-                      </div>
-                      <div className="memory-vector-visual">
-                        <span className="vec-dot active"></span>
-                        <span className="vec-dot active"></span>
-                        <span className="vec-dot"></span>
-                        <span className="vec-dot active"></span>
-                        <span className="vec-dot"></span>
-                      </div>
-                    </div>
-
-                    <div className="rnn-output-box">
-                      <span className="box-tag">Predicted Next Token</span>
-                      <span className="box-val">
-                        {rnnStep < rnnTokens.length - 1 ? `"${rnnTokens[rnnStep + 1]}"` : '"(End-Of-Seq)"'}
-                      </span>
-                    </div>
+                  <div className="tfidf-bar-row">
+                    <span className="term-name">Reranked Top 5</span>
+                    <div className="bar-track"><div className="bar-fill" style={{ width: '28%', background: '#38bdf8' }}></div></div>
+                    <span className="bar-val">5 chunks</span>
                   </div>
+                </div>
+                <p style={{ marginTop: '12px', fontSize: '0.85rem', color: '#38bdf8' }}>
+                  ✓ Cross-encoder cuts LLM context payload by <strong>72% (from 18 down to 5 chunks)</strong>, preventing hallucination.
+                </p>
+              </div>
 
-                  <div className="cell-footer-prob">
-                    <span className="prob-label">Top Candidate Softmax Probabilities:</span>
-                    <div className="candidate-bars">
-                      <div className="cand-item">
-                        <span>{rnnStep < rnnTokens.length - 1 ? rnnTokens[rnnStep + 1] : 'EOS'}</span>
-                        <div className="cand-track"><div className="cand-fill" style={{ width: '84%' }}></div></div>
-                        <span>84.2%</span>
-                      </div>
-                      <div className="cand-item">
-                        <span>pipeline</span>
-                        <div className="cand-track"><div className="cand-fill" style={{ width: '9%' }}></div></div>
-                        <span>9.4%</span>
-                      </div>
-                      <div className="cand-item">
-                        <span>model</span>
-                        <div className="cand-track"><div className="cand-fill" style={{ width: '4%' }}></div></div>
-                        <span>4.1%</span>
-                      </div>
-                    </div>
+              <div className="nlp-pipeline-stage result-stage">
+                <div className="stage-title">
+                  <span className="stage-num">Stage 3</span>
+                  <span>Grounded Generation via Groq API (gpt-oss-120b)</span>
+                </div>
+                <div className="nlp-classification-card">
+                  <div className="nlp-score-badge">
+                    LLM Engine: <strong>gpt-oss-120b (Groq API)</strong>
+                  </div>
+                  <div className="nlp-score-val">
+                    Context Efficiency: <strong>72% Cut</strong>
+                  </div>
+                  <div className="nlp-metric-proof">
+                    Answers synthesized from verified context only • Live Streamlit App
                   </div>
                 </div>
               </div>

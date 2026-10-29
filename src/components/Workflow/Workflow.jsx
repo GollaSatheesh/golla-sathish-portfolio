@@ -23,7 +23,7 @@ const WORKFLOW_STEPS = [
     title: 'Model Training & Neural Architecture',
     icon: '🤖',
     description:
-      'Training Scikit-learn ensembles (Random Forest, Gradient Boosting) and PyTorch sequential architectures (RNNs) with cross-validation.',
+      'Training Scikit-learn classifiers (Logistic Regression, Ensembles) and PyTorch deep neural networks (CNNs) with stratified cross-validation.',
     artifacts: ['Stratified Train-Test Split', 'Loss Optimization', 'Hyperparameter Tuning'],
   },
   {

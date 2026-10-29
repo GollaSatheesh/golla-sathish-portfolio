@@ -3,42 +3,43 @@ import './About.css';
 
 export default function About() {
   return (
-    <section id="about" className="lux-about">
+    <section className="lux-about" id="about">
       <div className="container">
         
         {/* Section Header */}
-        <div className="reveal">
-          <div className="section-badge">
-            <span className="dot"></span>
-            <span>Executive Profile</span>
+        <div className="section-header-block reveal stagger-1">
+          <div className="section-pill">
+            <span className="pill-dot"></span>
+            <span>VERIFIED ENGINEER PROFILE</span>
           </div>
-          <h2 className="section-title">
-            Passionate About Turning Data Into <span className="gradient-text stylish-serif-italic">Production Intelligence</span>
+          <h2 className="section-heading">
+            Engineering Rigor <span className="highlight-glimmer">Driven by Data</span>
           </h2>
-          <p className="section-subtitle">
-            Based in Bangalore, India — bridging foundational Computer Science principles with cutting-edge machine learning and NLP.
+          <p className="section-subheading">
+            Bridging mathematical foundations, end-to-end data pipelines, and production machine learning applications.
           </p>
         </div>
 
-        {/* 2-Column Luxury Layout */}
-        <div className="about-main-grid">
+        {/* Content Split: Left Narrative, Right Specs & Cards */}
+        <div className="about-grid">
           
           {/* Left Narrative */}
           <div className="about-narrative reveal stagger-1">
             <p className="narrative-lead">
-              I am an <strong> Data Scientist</strong> with hands-on experience in 
+              I am an <strong>Aspiring Data Scientist</strong> with hands-on experience in 
               <strong> Python, SQL, machine learning, deep learning</strong>, and <strong>NLP</strong> developed 
               through academic rigor and self-driven engineering projects.
             </p>
             <p>
-              I have completed my <strong>B.Tech in Artificial Intelligence</strong> at 
+              I have completed my <strong>B.Tech in Computer Science and Engineering</strong> at 
               <em> Sri Venkatesa Perumal College of Engineering and Technology</em> (2022 – 2026, CGPA: 7.0/10.0), 
-              I specialize in taking messy datasets through rigorous <strong>data cleaning, EDA, feature engineering</strong>, 
+              specializing in taking messy datasets through rigorous <strong>data cleaning, EDA, feature engineering</strong>, 
               and training optimized classification and regression architectures.
             </p>
             <p>
-              My hands-on portfolio demonstrates practical model deployment, including deep neural text sequence 
-              prediction with <strong>PyTorch RNNs & Streamlit</strong>, and sentiment classifiers yielding 
+              My hands-on portfolio demonstrates practical model deployment, including a <strong>98.72% accurate PyTorch CNN digit classifier</strong>, 
+              a <strong>Student Performance early-warning system catching 92% of at-risk students</strong>, 
+              a <strong>two-stage RAG pipeline with cross-encoder reranking</strong>, and sentiment classifiers yielding 
               <strong> ~90% accuracy</strong> serialized with Joblib. Seeking an entry-level Data Science role in 
               Bangalore or hybrid environments to solve mission-critical data problems.
             </p>
@@ -84,7 +85,7 @@ export default function About() {
               </div>
               <h3 className="card-title">B.Tech in CSE</h3>
               <p className="card-desc">
-                Sri Venkatesa Perumal College of Engineering (CGPA: 7.0/10.0). Rigorous coursework in Data Structures, DBMS & Machine Learning.
+                Sri Venkatesa Perumal College of Engineering (CGPA: 7.0/10.0). Coursework in Python Programming, Data Structures, DBMS & Machine Learning.
               </p>
             </div>
 
@@ -95,18 +96,18 @@ export default function About() {
               </div>
               <h3 className="card-title">Machine Learning</h3>
               <p className="card-desc">
-                Random Forest, Gradient Boosting, XGBoost, LightGBM, SVM, KNN, alongside K-Means, Hierarchical, and DBSCAN clustering.
+                Logistic Regression, Decision Trees, Random Forest, KNN, SVM, Naive Bayes, XGBoost, alongside K-Means, Hierarchical, and DBSCAN clustering.
               </p>
             </div>
 
             <div className="about-glass-card">
               <div className="card-top-row">
                 <div className="card-icon-box">🧠</div>
-                <span className="card-badge">PyTorch & Transformers</span>
+                <span className="card-badge">PyTorch & RAG</span>
               </div>
               <h3 className="card-title">Deep Learning & NLP</h3>
               <p className="card-desc">
-                CNN, RNN text generation, TF-IDF vectorization, tokenization, stopword removal, stemming, and model serialization.
+                PyTorch CNNs, Two-Stage RAG with Cross-Encoder reranking (FAISS), TF-IDF vectorization, tokenization, and model serialization.
               </p>
             </div>
 

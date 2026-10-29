@@ -250,7 +250,7 @@ export default function NeuralCanvas() {
         <span className="hud-led led-green"></span>
         <div className="hud-content">
           <span className="hud-title">MODEL INFERENCE</span>
-          <span className="hud-val">PyTorch RNN // NLP</span>
+          <span className="hud-val">PyTorch CNN // 98.72%</span>
         </div>
       </div>
 

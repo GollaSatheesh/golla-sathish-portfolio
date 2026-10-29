@@ -99,9 +99,10 @@ export default function Hero() {
             <span className="hero-role-title">
               <Typewriter words={[
                 "Data Scientist & Machine Learning Engineer",
-                "PyTorch Neural Sequence Architect",
-                "NLP & Sentiment Analysis Engineer (~90% Acc)",
-                "Predictive Systems & Academic Risk Modeling"
+                "PyTorch CNN & Computer Vision (98.72% Acc)",
+                "Generative AI & Two-Stage RAG (LangChain + FAISS)",
+                "Student Risk Prediction (87.3% Acc, 92% Recall)",
+                "NLP & Sentiment Analysis Engineer (~90% Acc)"
               ]} />
             </span>
           </div>

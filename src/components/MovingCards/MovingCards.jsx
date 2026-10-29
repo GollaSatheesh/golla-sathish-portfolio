@@ -3,75 +3,61 @@ import './MovingCards.css';
 
 const MOVING_PROJECT_CARDS = [
   {
-    id: 'mc-1',
-    badge: '★ INSTITUTIONAL CAPSTONE',
-    badgeClass: 'badge-gold',
-    title: 'Student Performance & Risk Predictor',
-    type: 'Supervised ML / Classification',
-    metric: '94% Recall',
-    metricLabel: 'At-Risk Detection',
-    tech: ['Python', 'Scikit-Learn', 'Random Forest', 'GBDT'],
-    desc: 'Trained ensemble models on institutional academic trajectories to identify at-risk students for proactive intervention.',
-  },
-  {
-    id: 'mc-2',
-    badge: '🚀 ~90% VERIFIED ACCURACY',
+    id: 'mc-mnist',
+    badge: '🚀 98.72% TEST ACCURACY',
     badgeClass: 'badge-cyan',
-    title: 'NLP Sentiment Classification Engine',
-    type: 'Linguistic Computing / TF-IDF',
-    metric: '~90% Test Acc',
-    metricLabel: 'Stratified Split',
-    tech: ['Python', 'TF-IDF', 'Logistic Regression', 'Joblib'],
-    desc: 'High-precision text classifier converting unstructured natural language into high-dimensional sparse representations.',
+    title: 'MNIST Digit Classifier',
+    type: 'Computer Vision / Deep Learning',
+    metric: '98.72%',
+    metricLabel: '10k Test Set Acc',
+    tech: ['PyTorch', 'CNN', 'Streamlit', 'Adam (lr 0.001)'],
+    desc: 'Trained a 2-layer CNN (206k parameters) in PyTorch on 60,000 MNIST images. Deployed as a live Streamlit app for digit prediction.',
+    liveDemo: 'https://mnist-digit-classifiergit.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh/mnist-digit-classifier',
   },
   {
-    id: 'mc-3',
-    badge: '🧠 PYTORCH RNN ARCHITECTURE',
+    id: 'mc-student',
+    badge: '★ 92% RECALL (FAILING STUDENTS)',
+    badgeClass: 'badge-gold',
+    title: 'Student Performance Prediction App',
+    type: 'Machine Learning / Classification',
+    metric: '87.3%',
+    metricLabel: 'Test Accuracy (vs 67%)',
+    tech: ['Scikit-learn', 'Logistic Regression', 'Streamlit', 'Data Preprocessing'],
+    desc: 'Trained Logistic Regression on 395 student records to predict pass/fail, catching 24 of 26 failing students with target leakage prevention.',
+    liveDemo: 'https://student-performance-prediction-s.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh/student-performance-prediction',
+  },
+  {
+    id: 'mc-rag',
+    badge: '🧠 72% CONTEXT REDUCTION',
     badgeClass: 'badge-indigo',
-    title: 'Next Word Sequential Token Predictor',
-    type: 'Deep Learning / Sequence Modeling',
-    metric: 'Loss: 0.38',
-    metricLabel: 'Cross-Entropy',
-    tech: ['PyTorch', 'RNN', 'Streamlit', 'Word Embeddings'],
-    desc: 'Formulated sliding sequence windows in PyTorch with recurrent feedback loops and a real-time Streamlit web interface.',
+    title: 'RAG with Cross-Encoder Reranking',
+    type: 'Generative AI / NLP',
+    metric: '72%',
+    metricLabel: 'Context Cut to LLM',
+    tech: ['LangChain', 'FAISS', 'Cross-Encoder', 'Groq API', 'Streamlit'],
+    desc: 'Built a 2-stage RAG pipeline with LangChain & FAISS. Added cross-encoder reranker rescoring question-chunk pairs before Groq LLM inference.',
+    liveDemo: 'https://ragusingreranking-w8i533qzzf2djpe8ptau6c.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh/RagReranking',
   },
   {
-    id: 'mc-4',
-    badge: '⚡ DATA ENGINEERING & EDA',
+    id: 'mc-sentiment',
+    badge: '⚡ ~90% TEST ACCURACY',
     badgeClass: 'badge-emerald',
-    title: 'Automated Profiling & Leakage Prevention',
-    type: 'Data Preparation & Cleaning',
-    metric: '100% Clean',
-    metricLabel: 'Zero Data Leakage',
-    tech: ['Pandas', 'NumPy', 'SQL', 'Seaborn'],
-    desc: 'Statistical distribution checking, automated outlier filtering, missingness imputation, and categorical vector encoding.',
-  },
-  {
-    id: 'mc-5',
-    badge: '📦 PRODUCTION SERIALIZATION',
-    badgeClass: 'badge-purple',
-    title: 'Joblib Zero-Latency Pipeline Bundles',
-    type: 'Model Deployment / MLOps',
-    metric: '<15ms',
-    metricLabel: 'Inference Latency',
-    tech: ['Joblib', 'Pickle', 'Python', 'Streamlit'],
-    desc: 'Serialized complete preprocessing and hyperparameter-tuned estimators into production-ready .pkl bundles for instant scoring.',
-  },
-  {
-    id: 'mc-6',
-    badge: '📊 SPATIAL TEXT CATEGORIZATION',
-    badgeClass: 'badge-blue',
-    title: 'Multinomial Naive Bayes Classifier',
-    type: 'Probabilistic ML / Text Mining',
-    metric: '0.89 F1',
-    metricLabel: 'Macro Evaluation',
-    tech: ['Scikit-Learn', 'N-Grams', 'Tokenizer', 'Macro F1'],
-    desc: 'Classifying linguistic text corpora into multi-class taxonomies using Laplace smoothing and high-dimensional n-gram feature spaces.',
+    title: 'Sentiment Analysis using TF-IDF & Logistic Regression',
+    type: 'NLP / Machine Learning',
+    metric: '~90%',
+    metricLabel: 'Movie Review Acc',
+    tech: ['Python', 'Scikit-learn', 'TF-IDF', 'Joblib', 'NLP'],
+    desc: 'Classifies movie reviews as positive or negative with text preprocessing and TF-IDF vectorization. Serialized with Joblib.',
+    liveDemo: null,
+    github: 'https://github.com/GollaSatheesh',
   },
 ];
 
 export default function MovingCards() {
-  const [speed, setSpeed] = useState('normal'); // 'normal' or 'slow'
+  const [speed, setSpeed] = useState('normal');
   const [isPaused, setIsPaused] = useState(false);
 
   return (
@@ -81,7 +67,7 @@ export default function MovingCards() {
       <div className="moving-cards-top-strip">
         <div className="moving-badge">
           <span className="moving-dot"></span>
-          <span>CONTINUOUS MODEL SHOWCASE // TAP ACADEMY MOTION</span>
+          <span>CONTINUOUS MODEL SHOWCASE // RESUME-VERIFIED SYSTEMS</span>
         </div>
         
         <div className="moving-controls">
@@ -108,8 +94,8 @@ export default function MovingCards() {
         <div
           className={`moving-track ${isPaused ? 'paused' : ''} ${speed === 'slow' ? 'speed-slow' : 'speed-normal'}`}
         >
-          {/* Double array for seamless infinite looping */}
-          {[...MOVING_PROJECT_CARDS, ...MOVING_PROJECT_CARDS].map((card, idx) => (
+          {/* Loop twice for seamless infinite slide */}
+          {[...MOVING_PROJECT_CARDS, ...MOVING_PROJECT_CARDS, ...MOVING_PROJECT_CARDS].map((card, idx) => (
             <div key={`${card.id}-${idx}`} className="moving-card">
               
               <div className="mc-header">
@@ -131,13 +117,37 @@ export default function MovingCards() {
                 ))}
               </div>
 
+              {/* Direct Links */}
+              <div className="mc-links-row">
+                {card.liveDemo && (
+                  <a
+                    href={card.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mc-link-btn demo-btn"
+                  >
+                    <span>Live Demo ↗</span>
+                  </a>
+                )}
+                {card.github && (
+                  <a
+                    href={card.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mc-link-btn code-btn"
+                  >
+                    <span>GitHub ↗</span>
+                  </a>
+                )}
+              </div>
+
             </div>
           ))}
         </div>
       </div>
 
       <div className="moving-hint">
-        <span>💡 Hover over any card to pause and inspect architectural specs</span>
+        <span>💡 Hover over any card to pause and open live demo or inspect GitHub source</span>
       </div>
 
     </div>

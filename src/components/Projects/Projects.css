@@ -15,8 +15,16 @@
 }
 
 /* Bento Column Spans */
+.bento-span-12 {
+  grid-column: span 12;
+}
+
 .bento-span-8 {
   grid-column: span 8;
+}
+
+.bento-span-6 {
+  grid-column: span 6;
 }
 
 .bento-span-4 {
@@ -406,16 +414,80 @@
   pointer-events: auto;
 }
 
+/* Action Links Row (Live Demo & GitHub) */
+.bento-links-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline-border);
+  flex-wrap: wrap;
+}
+
+.bento-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-live-demo {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.btn-live-demo:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+}
+
+.live-demo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.btn-github-code {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  border: 1px solid var(--hairline-border);
+}
+
+.btn-github-code:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #FFFFFF;
+  border-color: var(--hairline-border-hover);
+  transform: translateY(-1px);
+}
+
+.link-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.bento-link-btn:hover .link-arrow {
+  transform: translate(2px, -2px);
+}
+
 /* Responsive Bento Overhaul */
 @media (max-width: 1080px) {
-  .bento-span-8 {
-    grid-column: span 12;
-  }
+  .bento-span-12,
+  .bento-span-8,
+  .bento-span-6,
   .bento-span-4 {
-    grid-column: span 6;
-  }
-  .bento-flagship-body {
-    grid-template-columns: 1fr;
+    grid-column: span 12;
   }
 }
 
@@ -424,7 +496,9 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
+  .bento-span-12,
   .bento-span-8,
+  .bento-span-6,
   .bento-span-4 {
     grid-column: span 1;
   }
@@ -433,13 +507,6 @@
   }
   .bento-headline {
     font-size: 1.25rem;
-  }
-  .bento-span-8 .bento-headline {
-    font-size: 1.35rem;
-  }
-  .bento-flagship-body {
-    grid-template-columns: 1fr;
-    gap: 20px;
   }
   .bento-metrics-strip {
     grid-template-columns: repeat(2, 1fr);
