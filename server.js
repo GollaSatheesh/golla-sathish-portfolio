@@ -11,15 +11,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Transporter configured with your sender Gmail account
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER || 'mailforediting5@gmail.com',
-    pass: (process.env.EMAIL_PASS || '').replace(/\s+/g, ''), // Strip any spaces
-  },
-});
-
 app.post('/api/send-email', async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -27,9 +18,25 @@ app.post('/api/send-email', async (req, res) => {
     return res.status(400).json({ error: 'All fields are required.' });
   }
 
+  const emailUser = process.env.EMAIL_USER;
+  const emailPass = process.env.EMAIL_PASS;
+  const toEmail = process.env.TO_EMAIL || emailUser;
+
+  if (!emailUser || !emailPass) {
+    return res.status(500).json({ error: 'Email service credentials not configured.' });
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailUser,
+      pass: emailPass.replace(/\s+/g, ''),
+    },
+  });
+
   const mailOptions = {
-    from: `"Portfolio Contact: ${name}" <${process.env.EMAIL_USER || 'mailforediting5@gmail.com'}>`,
-    to: process.env.TO_EMAIL || 'gollasatheesh95@gmail.com',
+    from: `"Portfolio Contact: ${name}" <${emailUser}>`,
+    to: toEmail,
     replyTo: email,
     subject: `🚀 Portfolio Message from ${name} (${email})`,
     html: `
@@ -49,14 +56,13 @@ app.post('/api/send-email', async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`[Email Delivered] From: ${name} (${email}) -> To: ${process.env.TO_EMAIL || 'gollasatheesh95@gmail.com'}`);
-    return res.status(200).json({ success: true, message: 'Email delivered directly to your inbox.' });
+    return res.status(200).json({ success: true, message: 'Message sent successfully.' });
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Server email error:', error);
     return res.status(500).json({ error: error.message || 'Failed to send email.' });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Direct email server running on http://localhost:${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });

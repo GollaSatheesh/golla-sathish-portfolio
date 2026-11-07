@@ -12,18 +12,27 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'All fields are required.' });
   }
 
-  // Gmail SMTP transporter using your verified credentials
+  const emailUser = process.env.EMAIL_USER;
+  const emailPass = process.env.EMAIL_PASS;
+  const toEmail = process.env.TO_EMAIL || emailUser;
+
+  if (!emailUser || !emailPass) {
+    console.error('Missing email configuration in environment variables.');
+    return res.status(500).json({ error: 'Email service is currently misconfigured.' });
+  }
+
+  // Gmail SMTP transporter using environment variables only
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER || 'mailforediting5@gmail.com',
-      pass: (process.env.EMAIL_PASS || 'ysdsbtmxmldkzebr').replace(/\s+/g, ''),
+      user: emailUser,
+      pass: emailPass.replace(/\s+/g, ''),
     },
   });
 
   const mailOptions = {
-    from: `"Portfolio Contact: ${name}" <${process.env.EMAIL_USER || 'mailforediting5@gmail.com'}>`,
-    to: process.env.TO_EMAIL || 'gollasatheesh95@gmail.com',
+    from: `"Portfolio Contact: ${name}" <${emailUser}>`,
+    to: toEmail,
     replyTo: email,
     subject: `🚀 Portfolio Message from ${name} (${email})`,
     html: `
