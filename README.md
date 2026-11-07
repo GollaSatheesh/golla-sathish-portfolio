@@ -1,4 +1,4 @@
-# Satheesh Yadav — Personal Portfolio Website
+# Sathish — Personal Portfolio Website
 
 A personal portfolio website for **Satheesh Yadav**, designed for Data Scientist and Machine Learning Engineer positions.
 
