@@ -267,6 +267,7 @@ function SplashCursor({
   glow = 0,
   quality = 'high',
   clickSplash = true,
+  clickIntensity = 0.35,
   intro = true,
   contained = false,
   theme = 'dark',
@@ -293,6 +294,7 @@ function SplashCursor({
     glow: clamp(glow, 0, 1),
     quality: QUALITY[quality] ? quality : 'high',
     clickSplash,
+    clickIntensity: Math.max(0, clickIntensity),
     contained,
     light: theme === 'light'
   };
@@ -670,19 +672,19 @@ function SplashCursor({
       gl.uniform1f(u.aspectRatio, aspect);
       gl.uniform2f(u.point, x, y);
       gl.uniform1f(u.radius, radiusFor(3));
-      gl.uniform1f(u.strength, 1100 * s.force);
+      gl.uniform1f(u.strength, 450 * s.force);
       gl.uniform1f(u.seed, seed);
       blit(velocity.write);
       velocity.swap();
       const offset = Math.random();
-      const amount = 1.6 * s.intensity;
+      const amount = (s.clickIntensity ?? 0.35) * s.intensity;
       const first = inkFor(colorAt(offset, now), amount);
       const second = inkFor(colorAt(offset + 0.3, now), amount);
       u = use('crown');
       gl.uniform1i(u.uTarget, dye.read.attach(0));
       gl.uniform1f(u.aspectRatio, aspect);
       gl.uniform2f(u.point, x, y);
-      gl.uniform1f(u.radius, radiusFor(1.6));
+      gl.uniform1f(u.radius, radiusFor(0.9));
       gl.uniform3f(u.colorA, first[0], first[1], first[2]);
       gl.uniform3f(u.colorB, second[0], second[1], second[2]);
       gl.uniform1f(u.seed, seed);

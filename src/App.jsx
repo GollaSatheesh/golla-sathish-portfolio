@@ -109,15 +109,16 @@ function App() {
         rainbow={false}
         colors={['#00d2ee', '#38bdf8', '#2563eb', '#6366f1', '#06b6d4']}
         colorSpeed={0.8}
-        intensity={0.85}
-        size={0.85}
-        force={0.9}
-        swirl={2.5}
-        trail={0.8}
+        intensity={0.75}
+        size={0.8}
+        force={0.75}
+        swirl={2.2}
+        trail={0.75}
         shading={0.8}
-        glow={0.35}
+        glow={0.25}
         quality="high"
         clickSplash={true}
+        clickIntensity={0.25}
         intro={false}
         zIndex={1}
       />
