@@ -77,6 +77,32 @@ const VERIFIED_PROJECTS = [
     ],
   },
   {
+    id: 'customer-segmentation-retention',
+    title: 'Customer Segmentation & Retention Prediction',
+    type: 'Machine Learning / Customer Analytics',
+    domain: 'RFM Behavioral Clustering & Churn Modeling',
+    category: 'ml',
+    badge: '🎯 805K+ TRANSACTIONS // K-MEANS & RF',
+    liveDemo: 'https://customer-segmentation-retention-tzgmipphbnfeuihfbyjlzw.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh',
+    summary:
+      'Analyzed 805K+ retail transactions, performed RFM segmentation on 5,878 customers across six behavioral tiers, applied K-Means clustering, and trained classification models predicting 90-day inactivity risk.',
+    highlights: [
+      'Cleaned and analysed 805K+ retail transactions to understand customer purchasing behaviour and identify sales patterns.',
+      'Performed RFM analysis on 5,878 customers and identified six customer segments, including Champions, Loyal Customers, and At Risk.',
+      'Applied K-Means clustering on standardised RFM features to identify four groups based on customer behaviour.',
+      'Built and compared Logistic Regression and Random Forest models to predict customer inactivity over a 90-day period.',
+      'Developed and deployed a Streamlit dashboard to explore customer segments, inactivity risk, and generate predictions using the saved ML model.',
+    ],
+    tech: ['Python', 'Pandas', 'Scikit-learn', 'K-Means', 'Logistic Regression', 'Random Forest', 'Streamlit', 'RFM Analysis'],
+    metrics: [
+      { label: 'Transactions Analyzed', value: '805K+ Records' },
+      { label: 'Customer Cohort', value: '5,878 Users' },
+      { label: 'Segmentation Models', value: 'RFM & 4 K-Means' },
+      { label: 'Inactivity Horizon', value: '90-Day Window' },
+    ],
+  },
+  {
     id: 'sentiment-analysis-tfidf',
     title: 'Sentiment Analysis using TF-IDF and Logistic Regression',
     type: 'NLP / Machine Learning',
@@ -132,9 +158,9 @@ export default function Projects() {
         {/* Interactive Domain Filter Tabs */}
         <div className="projects-filter-bar reveal stagger-1">
           {[
-            { id: 'all', label: 'All Projects', count: 4 },
+            { id: 'all', label: 'All Projects', count: 5 },
             { id: 'cv', label: 'Computer Vision & Deep Learning', count: 1 },
-            { id: 'ml', label: 'Machine Learning', count: 1 },
+            { id: 'ml', label: 'Machine Learning', count: 2 },
             { id: 'genai', label: 'Generative AI & RAG', count: 1 },
             { id: 'nlp', label: 'NLP & Text Classification', count: 1 },
           ].map((tab) => (
@@ -153,10 +179,11 @@ export default function Projects() {
         <div className="bento-grid-container">
           {VERIFIED_PROJECTS.map((project, index) => {
             const isMatch = matchesFilter(project.category);
+            const spanClass = project.span || (index === 4 ? 'bento-span-12' : 'bento-span-6');
             return (
               <div
                 key={project.id}
-                className={`bento-cell bento-span-6 spotlight-card reveal stagger-${(index % 2) + 1} ${
+                className={`bento-cell ${spanClass} spotlight-card reveal stagger-${(index % 2) + 1} ${
                   isMatch ? 'filter-active' : 'filter-dimmed'
                 }`}
               >

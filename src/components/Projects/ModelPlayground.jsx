@@ -13,9 +13,19 @@ const STUDENT_PRESETS = [
   { name: 'Student C (Borderline)', g1: 10, g2: 10, label: 'Borderline Pass (Needs Monitoring)', conf: '62.4%', status: 'warning' },
 ];
 
+const CUSTOMER_PRESETS = [
+  { name: 'Customer A (Loyal Champion)', recency: 7, frequency: 18, label: 'Active Champion (Low Inactivity Risk)', conf: '97.4%', status: 'safe' },
+  { name: 'Customer B (At Risk / Inactive)', recency: 85, frequency: 2, label: 'High Inactivity Risk (Churn Alert)', conf: '91.8%', status: 'risk' },
+  { name: 'Customer C (About to Sleep)', recency: 48, frequency: 5, label: 'Moderate Inactivity Risk (Re-engage)', conf: '71.2%', status: 'warning' },
+];
+
 export default function ModelPlayground() {
-  const [activeModel, setActiveModel] = useState('student'); // 'student' | 'sentiment'
+  const [activeModel, setActiveModel] = useState('customer'); // 'customer' | 'student' | 'sentiment'
   
+  // Customer model state
+  const [recencyDays, setRecencyDays] = useState(7);
+  const [frequencyOrders, setFrequencyOrders] = useState(18);
+
   // Student model state
   const [g1Score, setG1Score] = useState(7);
   const [g2Score, setG2Score] = useState(8);
@@ -26,12 +36,47 @@ export default function ModelPlayground() {
   const [isRunning, setIsRunning] = useState(false);
   const [inferenceResult, setInferenceResult] = useState({
     status: 'done',
-    label: 'Academic Risk / Fail Alert',
-    riskType: 'risk',
-    confidence: '93.5%',
-    timeMs: '12.4',
-    log: 'Trained on 395 records (stratified 80/20 split). Evaluated 24/26 failing students caught (92% recall).',
+    label: 'Active Champion (Low Inactivity Risk)',
+    riskType: 'safe',
+    confidence: '97.4%',
+    timeMs: '10.8',
+    log: 'RFM analysis on 5,878 customer profiles (805K+ transactions). K-Means clustering & 90-day retention prediction evaluated.',
   });
+
+  const handleRunCustomer = (rec = recencyDays, freq = frequencyOrders) => {
+    setIsRunning(true);
+    setInferenceResult((prev) => ({ ...prev, status: 'running', log: 'Passing standardized RFM vectors to classification model...' }));
+
+    setTimeout(() => {
+      let label = 'Active Champion (Low Inactivity Risk)';
+      let riskType = 'safe';
+      let conf = 94.0;
+
+      if (rec > 60 || (rec > 40 && freq < 3)) {
+        label = 'High Inactivity Risk (Churn Alert)';
+        riskType = 'risk';
+        conf = Math.min(98.8, 82 + (rec - 60) * 0.45);
+      } else if (rec >= 35 || freq <= 4) {
+        label = 'Moderate Inactivity Risk (Re-engage)';
+        riskType = 'warning';
+        conf = 68.0 + Math.random() * 8;
+      } else {
+        label = 'Active Champion (Low Inactivity Risk)';
+        riskType = 'safe';
+        conf = Math.min(99.2, 90 + Math.min(freq, 20) * 0.45);
+      }
+
+      setInferenceResult({
+        status: 'done',
+        label,
+        riskType,
+        confidence: `${conf.toFixed(1)}%`,
+        timeMs: (8 + Math.random() * 5).toFixed(1),
+        log: `Inference executed: Recency=${rec}d, Frequency=${freq} orders -> 90-day inactivity classifier returned prediction without latency.`,
+      });
+      setIsRunning(false);
+    }, 400);
+  };
 
   const handleRunStudent = (g1 = g1Score, g2 = g2Score) => {
     setIsRunning(true);
@@ -96,6 +141,12 @@ export default function ModelPlayground() {
     handleRunStudent(preset.g1, preset.g2);
   };
 
+  const selectCustomerPreset = (preset) => {
+    setRecencyDays(preset.recency);
+    setFrequencyOrders(preset.frequency);
+    handleRunCustomer(preset.recency, preset.frequency);
+  };
+
   return (
     <div className="model-playground-card spotlight-card">
       <div className="playground-header">
@@ -113,13 +164,22 @@ export default function ModelPlayground() {
         {/* Model Switcher Tabs */}
         <div className="model-switch-tabs">
           <button
+            className={`tab-btn ${activeModel === 'customer' ? 'active' : ''}`}
+            onClick={() => {
+              setActiveModel('customer');
+              handleRunCustomer(recencyDays, frequencyOrders);
+            }}
+          >
+            Customer Retention (RFM / 90d)
+          </button>
+          <button
             className={`tab-btn ${activeModel === 'student' ? 'active' : ''}`}
             onClick={() => {
               setActiveModel('student');
               handleRunStudent(g1Score, g2Score);
             }}
           >
-            Student Early-Warning (92% Recall)
+            Student Risk (92% Recall)
           </button>
           <button
             className={`tab-btn ${activeModel === 'sentiment' ? 'active' : ''}`}
@@ -137,10 +197,81 @@ export default function ModelPlayground() {
         {/* Left Interactive Input Console */}
         <div className="playground-input-panel">
           <span className="panel-label">
-            {activeModel === 'student' ? 'FEATURE INPUTS (FIRST & SECOND PERIOD GRADES)' : 'INPUT TEXT FOR SENTIMENT CLASSIFICATION'}
+            {activeModel === 'customer'
+              ? 'FEATURE INPUTS (RECENCY DAYS & PURCHASE FREQUENCY)'
+              : activeModel === 'student'
+              ? 'FEATURE INPUTS (FIRST & SECOND PERIOD GRADES)'
+              : 'INPUT TEXT FOR SENTIMENT CLASSIFICATION'}
           </span>
 
-          {activeModel === 'student' ? (
+          {activeModel === 'customer' ? (
+            <div className="student-inputs-block">
+              <div className="slider-group">
+                <div className="slider-header">
+                  <span>Recency (Days Since Last Purchase, 1–120):</span>
+                  <span className="slider-val-badge">{recencyDays} Days</span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="120"
+                  value={recencyDays}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setRecencyDays(val);
+                    handleRunCustomer(val, frequencyOrders);
+                  }}
+                  className="interactive-slider"
+                />
+              </div>
+
+              <div className="slider-group">
+                <div className="slider-header">
+                  <span>Frequency (Total Orders, 1–30):</span>
+                  <span className="slider-val-badge">{frequencyOrders} Orders</span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="30"
+                  value={frequencyOrders}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setFrequencyOrders(val);
+                    handleRunCustomer(recencyDays, val);
+                  }}
+                  className="interactive-slider"
+                />
+              </div>
+
+              <div className="presets-row">
+                <span className="presets-title">Customer Cohorts:</span>
+                {CUSTOMER_PRESETS.map((p, i) => (
+                  <button
+                    key={i}
+                    className="preset-chip"
+                    onClick={() => selectCustomerPreset(p)}
+                  >
+                    {p.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="live-demo-action-row">
+                <a
+                  href="https://customer-segmentation-retention-tzgmipphbnfeuihfbyjlzw.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-launch-streamlit"
+                >
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M12 2L2 19.5h20L12 2zm0 4.2L18.4 18H5.6L12 6.2z"/>
+                  </svg>
+                  <span>Open Full Streamlit Web App ↗</span>
+                </a>
+              </div>
+            </div>
+          ) : activeModel === 'student' ? (
             <div className="student-inputs-block">
               <div className="slider-group">
                 <div className="slider-header">
@@ -262,9 +393,13 @@ export default function ModelPlayground() {
               <span className="dot-green"></span>
             </div>
             <span className="term-meta-title">
-              {activeModel === 'student' ? 'LOGISTIC_REGRESSION // RISK_DETECTOR' : 'TF-IDF_CLASSIFIER // INFERENCE_LOG'}
+              {activeModel === 'customer'
+                ? 'CUSTOMER_RETENTION // INACTIVITY_PREDICTOR'
+                : activeModel === 'student'
+                ? 'LOGISTIC_REGRESSION // RISK_DETECTOR'
+                : 'TF-IDF_CLASSIFIER // INFERENCE_LOG'}
             </span>
-            <span className="term-latency">{inferenceResult.timeMs || '12.4'}ms</span>
+            <span className="term-latency">{inferenceResult.timeMs || '10.8'}ms</span>
           </div>
 
           <div className="terminal-content-view">
@@ -290,7 +425,22 @@ export default function ModelPlayground() {
               </div>
 
               <div className="telemetry-specs-row">
-                {activeModel === 'student' ? (
+                {activeModel === 'customer' ? (
+                  <>
+                    <div className="ts-cell">
+                      <span className="ts-key">Dataset</span>
+                      <span className="ts-val">805K+ Transactions</span>
+                    </div>
+                    <div className="ts-cell">
+                      <span className="ts-key">Cohort Base</span>
+                      <span className="ts-val">5,878 Customers</span>
+                    </div>
+                    <div className="ts-cell">
+                      <span className="ts-key">Target Horizon</span>
+                      <span className="ts-val">90-Day Inactivity</span>
+                    </div>
+                  </>
+                ) : activeModel === 'student' ? (
                   <>
                     <div className="ts-cell">
                       <span className="ts-key">Dataset & Split</span>

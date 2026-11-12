@@ -101,6 +101,7 @@ export default function Hero() {
                 "Data Scientist & Machine Learning Engineer",
                 "PyTorch CNN & Computer Vision (98.72% Acc)",
                 "Generative AI & Two-Stage RAG (LangChain + FAISS)",
+                "Customer Segmentation & 90-Day Retention ML (805k+ Records)",
                 "Student Risk Prediction (87.3% Acc, 92% Recall)",
                 "NLP & Sentiment Analysis Engineer (~90% Acc)"
               ]} />
@@ -142,7 +143,7 @@ export default function Hero() {
             <div className="metric-divider"></div>
             <div className="metric-cell">
               <div className="metric-number">
-                <AnimatedNumber target={4} suffix="+" />
+                <AnimatedNumber target={5} suffix="+" />
               </div>
               <div className="metric-label">End-to-End ML Systems</div>
             </div>

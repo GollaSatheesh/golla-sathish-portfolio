@@ -38,6 +38,7 @@ export default function About() {
             </p>
             <p>
               My hands-on portfolio demonstrates practical model deployment, including a <strong>98.72% accurate PyTorch CNN digit classifier</strong>, 
+              a <strong>Customer Segmentation & 90-day retention engine on 805K+ retail transactions</strong>, 
               a <strong>Student Performance early-warning system catching 92% of at-risk students</strong>, 
               a <strong>two-stage RAG pipeline with cross-encoder reranking</strong>, and sentiment classifiers yielding 
               <strong> ~90% accuracy</strong> serialized with Joblib. Seeking an entry-level Data Science role in 

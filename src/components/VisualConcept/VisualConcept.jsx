@@ -32,6 +32,16 @@ const CONCEPTS = [
     summary:
       'Visual representation of LangChain document splitting (18 chunks), FAISS dense retrieval, and ms-marco cross-encoder reranking that cuts context by 72% before Groq LLM inference.',
   },
+  {
+    id: 'customer-segmentation',
+    title: 'Customer Segmentation & Retention (RFM / K-Means)',
+    domain: 'Machine Learning / Customer Analytics',
+    badge: '805K+ RECORDS // 4 K-MEANS CLUSTERS',
+    liveDemo: 'https://customer-segmentation-retention-tzgmipphbnfeuihfbyjlzw.streamlit.app/',
+    github: 'https://github.com/GollaSatheesh',
+    summary:
+      'Visual exploration of RFM feature engineering across 5,878 customers (805K+ transactions), 4 distinct K-Means behavioral cohorts, and 90-day inactivity classification.',
+  },
 ];
 
 export default function VisualConcept() {
@@ -71,6 +81,15 @@ export default function VisualConcept() {
       model: 'MiniLM-L6-v2 + FAISS',
       llm: 'gpt-oss-120b (Groq API)',
     },
+  ];
+
+  // Customer Segmentation interactive state
+  const [selectedSegmentIdx, setSelectedSegmentIdx] = useState(0);
+  const customerSegments = [
+    { name: 'Champions (Cluster 0)', count: '1,420 Users', recency: '8.4 days', frequency: '16.2 orders', monetary: 'High Spend', risk: '4.8% Churn Risk', badgeClass: 'safe' },
+    { name: 'Loyal Buyers (Cluster 1)', count: '1,890 Users', recency: '24.1 days', frequency: '8.6 orders', monetary: 'Above Avg', risk: '14.2% Churn Risk', badgeClass: 'safe' },
+    { name: 'At Risk (Cluster 2)', count: '1,210 Users', recency: '79.6 days', frequency: '2.4 orders', monetary: 'Declining', risk: '86.4% Churn Risk', badgeClass: 'risk' },
+    { name: 'Hibernating (Cluster 3)', count: '1,358 Users', recency: '112.3 days', frequency: '1.2 orders', monetary: 'Low Spend', risk: '93.7% Churn Risk', badgeClass: 'risk' },
   ];
 
   useEffect(() => {
@@ -407,6 +426,82 @@ export default function VisualConcept() {
                   </div>
                   <div className="nlp-metric-proof">
                     Answers synthesized from verified context only • Live Streamlit App
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* VISUALIZER 4: CUSTOMER SEGMENTATION & RETENTION */}
+          {activeTab === 'customer-segmentation' && (
+            <div className="visual-body rag-visual">
+              <div className="nlp-preset-selector">
+                <span className="selector-label">Select K-Means Behavioral Cohort:</span>
+                <div className="preset-buttons">
+                  {customerSegments.map((cs, idx) => (
+                    <button
+                      key={idx}
+                      className={`preset-btn ${selectedSegmentIdx === idx ? 'active' : ''}`}
+                      onClick={() => setSelectedSegmentIdx(idx)}
+                    >
+                      {cs.name.split(' ')[0]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pipeline Stage 1 */}
+              <div className="nlp-pipeline-stage">
+                <div className="stage-title">
+                  <span className="stage-num">Phase 1</span>
+                  <span>Data Ingestion &amp; RFM Feature Normalization</span>
+                </div>
+                <div className="token-chips-grid">
+                  <span className="token-chip"><span className="token-prefix">raw_data:</span> 805,000+ Retail Transactions</span>
+                  <span className="token-chip"><span className="token-prefix">customer_base:</span> 5,878 Unique Accounts</span>
+                  <span className="token-chip"><span className="token-prefix">features:</span> Recency, Frequency, Monetary (RFM)</span>
+                  <span className="token-chip"><span className="token-prefix">clustering:</span> Standardized K-Means (k=4)</span>
+                </div>
+              </div>
+
+              {/* Pipeline Stage 2 */}
+              <div className="nlp-pipeline-stage">
+                <div className="stage-title">
+                  <span className="stage-num">Phase 2</span>
+                  <span>Cohort Profile // {customerSegments[selectedSegmentIdx].name}</span>
+                </div>
+                <div className="tfidf-bars-container">
+                  <div className="tfidf-bar-row">
+                    <span className="term-name">Recency</span>
+                    <div className="bar-track"><div className="bar-fill" style={{ width: `${Math.min(100, parseFloat(customerSegments[selectedSegmentIdx].recency) * 0.85)}%`, background: '#38bdf8' }}></div></div>
+                    <span className="bar-val">{customerSegments[selectedSegmentIdx].recency}</span>
+                  </div>
+                  <div className="tfidf-bar-row">
+                    <span className="term-name">Inactivity Risk</span>
+                    <div className="bar-track"><div className="bar-fill" style={{ width: customerSegments[selectedSegmentIdx].risk.split(' ')[0], background: customerSegments[selectedSegmentIdx].badgeClass === 'risk' ? '#ef4444' : '#10b981' }}></div></div>
+                    <span className="bar-val">{customerSegments[selectedSegmentIdx].risk.split(' ')[0]}</span>
+                  </div>
+                </div>
+                <p style={{ marginTop: '12px', fontSize: '0.85rem', color: '#38bdf8' }}>
+                  ✓ Segment includes <strong>{customerSegments[selectedSegmentIdx].count}</strong> with average order frequency of <strong>{customerSegments[selectedSegmentIdx].frequency}</strong> ({customerSegments[selectedSegmentIdx].monetary}).
+                </p>
+              </div>
+
+              {/* Pipeline Stage 3 */}
+              <div className="nlp-pipeline-stage result-stage">
+                <div className="stage-title">
+                  <span className="stage-num">Phase 3</span>
+                  <span>90-Day Retention ML Classifier (Random Forest &amp; Logistic Regression)</span>
+                </div>
+                <div className="nlp-classification-card">
+                  <div className="nlp-score-badge">
+                    Model: <strong>Random Forest &amp; Logistic Regression</strong>
+                  </div>
+                  <div className="nlp-score-val">
+                    Status: <strong style={{ color: customerSegments[selectedSegmentIdx].badgeClass === 'risk' ? '#f87171' : '#34d399' }}>{customerSegments[selectedSegmentIdx].risk}</strong>
+                  </div>
+                  <div className="nlp-metric-proof">
+                    Trained over 90-day inactivity threshold • Streamlit Dashboard Live
                   </div>
                 </div>
               </div>
